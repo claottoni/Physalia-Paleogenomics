@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,27 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="9. Material from previous courses" href="11_old_material.html" />
@@ -51,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Physalia Paleogenomics
+            <a href="index.html" class="icon icon-home"> Physalia Paleogenomics
           
 
           
@@ -74,7 +73,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -102,7 +100,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -141,9 +138,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li><span class="section-number">8. </span>R session</li>
+      <li>8. R session</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,46 +160,46 @@
            <div itemprop="articleBody">
             
   <div class="section" id="r-session">
-<h1><span class="section-number">8. </span>R session<a class="headerlink" href="#r-session" title="Permalink to this headline">¶</a></h1>
+<h1>8. R session<a class="headerlink" href="#r-session" title="Permalink to this headline">¶</a></h1>
 <p>In this hands-on we will use R to run analyses and create charts from the abundance tables that we generated with Kraken2.</p>
 <p>First of all, in R, we must set up the folder which contains the abundance table:</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">setwd</span><span class="p">(</span><span class="s">&quot;~/Documents/WORK/2-PROJECTS/HiddenFoods/HiddenFoods_analysis/krk2_genome_length_normalized_abundances_July2019/species&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="kp">setwd</span><span class="p">(</span><span class="s">&quot;~/Documents/WORK/2-PROJECTS/HiddenFoods/HiddenFoods_analysis/krk2_genome_length_normalized_abundances_July2019/species&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Then we can import the abundance table files:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --&gt; you can edit the files, eg remove last column &#39;Detail!</span>
 <span class="c1"># dataframes in R must do not allow identical row names, force row names as numbering by using row.names=NULL.</span>
 <span class="c1">#EOF issue with single quotes (&#39;) in species names, use read.delim</span>
-<span class="n">HiddenFoods_Jan2019.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;HiddenFoods_Jan2019.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">HiddenFoods_May2019.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;HiddenFoods_May2019.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Warinner2014.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Warinner2014.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Velsko_modern_calculus.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Velsko_modern_calculus.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Velsko_ancient_calculus_total.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Velsko_ancient_calculus_total.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Plaque.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Plaque.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Mann2018.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Mann2018.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Baboons_Ozga.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Baboons_Ozga.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Weyrich2017.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Weyrich2017.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Baboons_Egypt_all.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Baboons_Egypt_all.krk2.rcf.abundance.species.flt10.teeth.env.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Baboons_Egypt_nofilter.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Baboons_Egypt_nofilter.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Baboons_Egypt_teeth.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Baboons_Egypt_teeth.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Skin.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Skin.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">ObregonTito_gut.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;ObregonTito_gut.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Soil.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Soil.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Chimps.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Chimps_Ozga.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Brealey_animals.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;Brealey_animals.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Brealey_animals.krk2.norm.species</span> <span class="o">=</span> <span class="n">Brealey_animals.krk2.norm.species</span><span class="p">[,</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">8</span><span class="p">)]</span>           <span class="c1">#remove Blanks from filtrated Brealey, Gb1reg/flt, Gb2reg/flt</span>
-<span class="n">Eisenhofer_Japan_flt.krk2.norm.species</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;Eisenhofer_Japan.krk2.rcf.abundance.species.norm2.final.flt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-<span class="n">Eisenhofer_Japan_flt.krk2.norm.species</span> <span class="o">=</span> <span class="n">Eisenhofer_Japan_flt.krk2.norm.species</span><span class="p">[,</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">19</span><span class="p">,</span><span class="m">20</span><span class="p">)]</span>   <span class="c1">#remove EBC-2 in  Eisenhofer which has no classified species, and Details column.</span>
+HiddenFoods_Jan2019.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;HiddenFoods_Jan2019.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+HiddenFoods_May2019.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;HiddenFoods_May2019.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Warinner2014.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Warinner2014.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Velsko_modern_calculus.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Velsko_modern_calculus.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Velsko_ancient_calculus_total.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Velsko_ancient_calculus_total.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Plaque.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Plaque.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Mann2018.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Mann2018.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Baboons_Ozga.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Baboons_Ozga.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Weyrich2017.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Weyrich2017.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Baboons_Egypt_all.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Baboons_Egypt_all.krk2.rcf.abundance.species.flt10.teeth.env.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Baboons_Egypt_nofilter.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Baboons_Egypt_nofilter.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Baboons_Egypt_teeth.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Baboons_Egypt_teeth.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Skin.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Skin.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+ObregonTito_gut.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;ObregonTito_gut.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Soil.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Soil.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Chimps.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Chimps_Ozga.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Brealey_animals.krk2.norm.species <span class="o">=</span> read.delim<span class="p">(</span><span class="s">&quot;Brealey_animals.krk2.rcf.abundance.species.norm2.final&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Brealey_animals.krk2.norm.species <span class="o">=</span> Brealey_animals.krk2.norm.species<span class="p">[,</span><span class="o">-</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">8</span><span class="p">)]</span>           <span class="c1">#remove Blanks from filtrated Brealey, Gb1reg/flt, Gb2reg/flt</span>
+Eisenhofer_Japan_flt.krk2.norm.species <span class="o">=</span> read.table<span class="p">(</span><span class="s">&quot;Eisenhofer_Japan.krk2.rcf.abundance.species.norm2.final.flt&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">,</span> fill<span class="o">=</span><span class="bp">T</span><span class="p">,</span> row.names<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+Eisenhofer_Japan_flt.krk2.norm.species <span class="o">=</span> Eisenhofer_Japan_flt.krk2.norm.species<span class="p">[,</span><span class="o">-</span><span class="kt">c</span><span class="p">(</span><span class="m">19</span><span class="p">,</span><span class="m">20</span><span class="p">)]</span>   <span class="c1">#remove EBC-2 in  Eisenhofer which has no classified species, and Details column.</span>
 </pre></div>
 </div>
 <div class="section" id="barplot">
-<h2><span class="section-number">8.1. </span>Barplot<a class="headerlink" href="#barplot" title="Permalink to this headline">¶</a></h2>
+<h2>8.1. Barplot<a class="headerlink" href="#barplot" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="upgma">
-<h2><span class="section-number">8.2. </span>UPGMA<a class="headerlink" href="#upgma" title="Permalink to this headline">¶</a></h2>
+<h2>8.2. UPGMA<a class="headerlink" href="#upgma" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="nmds">
-<h2><span class="section-number">8.3. </span>nMDS<a class="headerlink" href="#nmds" title="Permalink to this headline">¶</a></h2>
+<h2>8.3. nMDS<a class="headerlink" href="#nmds" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -226,19 +223,11 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Amine Namouchi &amp; Claudio Ottoni
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -249,6 +238,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

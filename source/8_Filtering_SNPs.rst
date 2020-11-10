@@ -9,23 +9,23 @@ The ``-h`` option will display the following message:
 
 ::
 
-$ snptoolkit -h
-usage: snptoolkit [-h] {explore,annotate,combine,viz,expand} ...
+  $ snptoolkit -h
+  usage: snptoolkit [-h] {explore,annotate,combine,viz,expand} ...
 
-    snpToolkit takes vcf files, as well as bam files (optional) as inputs. The vcf files could be generated using samtools/bcftools, gatk HaplotypeCaller or freeBayes.
-    Please visit https://github.com/Amine-Namouchi/snpToolkit for more information.
+      snpToolkit takes vcf files, as well as bam files (optional) as inputs. The vcf files could be generated using samtools/bcftools, gatk HaplotypeCaller or freeBayes.
+      Please visit https://github.com/Amine-Namouchi/snpToolkit for more information.
 
-positional arguments:
-  {explore,annotate,combine,viz,expand}
-                        commands
-    explore             explore your vcf files before annotation
-    annotate            Annotate one or multiple vcf files
-    combine             combine snpToolkit output files in one alignment in fasta format
-    viz                 visualize snptoolkit output files
-    expand              expand existent list of polymorphic sites when new SNP output files are availble
+  positional arguments:
+    {explore,annotate,combine,viz,expand}
+                          commands
+      explore             explore your vcf files before annotation
+      annotate            Annotate one or multiple vcf files
+      combine             combine snpToolkit output files in one alignment in fasta format
+      viz                 visualize snptoolkit output files
+      expand              expand existent list of polymorphic sites when new SNP output files are availble
 
-optional arguments:
-  -h, --help            show this help message and exit
+  optional arguments:
+    -h, --help            show this help message and exit
 
 
 Five options are possible: ``explore``, ``annotate``, ``combine``, ``viz``, ``expand``. 
@@ -36,27 +36,27 @@ SNPs filtering and annotion
 
 The ``snpToolkit annotate`` command will display general information about the usage of the program:
 
-::
+.. code-block:: bash
 
   snptoolkit annotate -h
-usage: snptoolkit annotate [-h] -i IDENTIFIER -g GENBANK [-p PROCESSORS] [-f EXCLUDECLOSESNPS] [-q QUALITY] [-d DEPTH] [-r RATIO] [-e EXCLUDE]
+  usage: snptoolkit annotate [-h] -i IDENTIFIER -g GENBANK [-p PROCESSORS] [-f EXCLUDECLOSESNPS] [-q QUALITY] [-d DEPTH] [-r RATIO] [-e EXCLUDE]
 
-optional arguments:
-  -h, --help           show this help message and exit
+  optional arguments:
+    -h, --help           show this help message and exit
 
-snpToolkit annotate required options:
-  -i IDENTIFIER        provide a specific identifier to recognize the file(s) to be analyzed
-  -g GENBANK           Pleae provide a genbank file
+  snpToolkit annotate required options:
+    -i IDENTIFIER        provide a specific identifier to recognize the file(s) to be analyzed
+    -g GENBANK           Pleae provide a genbank file
 
-snpToolkit annotate additional options:
-  -p PROCESSORS        number of vcf files to be annotated in parallel default value [1]
-  -f EXCLUDECLOSESNPS  exclude SNPs if the distance between them is lower then the specified window size in bp
-  -q QUALITY           quality score to consider as a cutoff for variant calling. default value [20]
-  -d DEPTH             minimum depth caverage. default value [3]
-  -r RATIO             minimum ratio that correspond to the number of reads that has the mutated allele / total depth in that particular position. default
-                       value [0]
-  -e EXCLUDE           provide a tab file with genomic regions to exclude in this format: region start stop. region must correspond to the same name(s) of
-                       chromsome and plasmids as in the genbank file
+  snpToolkit annotate additional options:
+    -p PROCESSORS        number of vcf files to be annotated in parallel default value [1]
+    -f EXCLUDECLOSESNPS  exclude SNPs if the distance between them is lower then the specified window size in bp
+    -q QUALITY           quality score to consider as a cutoff for variant calling. default value [20]
+    -d DEPTH             minimum depth caverage. default value [3]
+    -r RATIO             minimum ratio that correspond to the number of reads that has the mutated allele / total depth in that particular position. default
+                        value [0]
+    -e EXCLUDE           provide a tab file with genomic regions to exclude in this format: region start stop. region must correspond to the same name(s) of
+                        chromsome and plasmids as in the genbank file
 
 Here is a simple example on how to use snpToolkit:
 ::
