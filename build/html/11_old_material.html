@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. Material from previous courses &mdash; Physalia Paleogenomics 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="8. R session" href="10_R_session.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Physalia Paleogenomics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_ListTools.html">1. List of Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_ReadsFiltering.html">2. Quality filtering of reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Metagenomics_v2.html">3. Metagenomic screening of shotgun data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_ReadsMapping_v2.html">4. Alignment of reads to a reference genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_VariantsCall.html">5. Variant calling and visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_Filtering_SNPs.html">6. Filtering, annotating and combining SNPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_DIY.html">7. DO-IT-YOURSELF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_R_session.html">8. R session</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Material from previous courses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kraken">9.1. Kraken</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minikraken">9.1.1. Minikraken</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-report-files">9.1.2. Create report files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-a-kraken-standard-database-on-hpc-clusters">9.1.3. Building a Kraken standard database (on HPC clusters)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-a-kraken-custom-database-on-hpc-clusters">9.1.4. Building a Kraken custom database (on HPC clusters)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#taxonomic-assignation-with-kraken-custom-database">9.1.5. Taxonomic assignation with Kraken custom database</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Physalia Paleogenomics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">9. </span>Material from previous courses</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/11_old_material.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="material-from-previous-courses">
+<h1><span class="section-number">9. </span>Material from previous courses<a class="headerlink" href="#material-from-previous-courses" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="kraken">
+<span id="kraken-label"></span><h2><span class="section-number">9.1. </span>Kraken<a class="headerlink" href="#kraken" title="Permalink to this headline">¶</a></h2>
+<p>In this hands-on session we will use <a class="reference external" href="http://ccb.jhu.edu/software/kraken/">Kraken</a> to screen the metagenomic content of a DNA extract after shotgun sequencing.
+A Kraken database is a directory containing at least 4 files:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>database.kdb</strong>: Contains the k-mer to taxon mappings</p></li>
+<li><p><strong>database.idx</strong>: Contains minimizer offset locations in database.kdb</p></li>
+<li><p><strong>taxonomy/nodes.dmp</strong>: Taxonomy tree structure + ranks</p></li>
+<li><p><strong>taxonomy/names.dmp</strong>: Taxonomy names</p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="minikraken">
+<h3><span class="section-number">9.1.1. </span>Minikraken<a class="headerlink" href="#minikraken" title="Permalink to this headline">¶</a></h3>
+<p>We will first use a pre-built 8 GB Kraken database, called <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Minikraken</a>, constructed from complete dusted bacterial, archaeal, and viral genomes in RefSeq (as of October 2017).
+You can download the pre-built Minikraken database from the website with <code class="docutils literal notranslate"><span class="pre">wget</span></code>, and extract the archive content with <code class="docutils literal notranslate"><span class="pre">tar</span></code>:</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ccb</span><span class="o">.</span><span class="n">jhu</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">kraken</span><span class="o">/</span><span class="n">dl</span><span class="o">/</span><span class="n">minikraken_20171101_8GB_dustmasked</span><span class="o">.</span><span class="n">tgz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">minikraken_20171101_8GB_dustmasked</span><span class="o">.</span><span class="n">tgz</span>
+</pre></div>
+</div>
+<p>Then, we can run the taxonomic assignation of the reads in our sample with the <code class="docutils literal notranslate"><span class="pre">kraken</span></code> command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20171101_8GB_dustmasked</span> <span class="o">--</span><span class="n">fastq</span><span class="o">-</span><span class="nb">input</span> <span class="n">filename</span><span class="o">.</span><span class="n">gz</span> <span class="o">--</span><span class="n">gzip</span><span class="o">-</span><span class="n">compressed</span> <span class="o">--</span><span class="n">output</span> <span class="n">filename</span><span class="o">.</span><span class="n">kraken</span>
+</pre></div>
+</div>
+<p>Some of the options available in Kraken:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>–db</strong> &lt;string&gt;</p></td>
+<td><p>Path to the folder (database name) containing the database files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–output</strong> &lt;string&gt;</p></td>
+<td><p>Print output to filename.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–threads</strong> &lt;integer&gt;</p></td>
+<td><p>Number of threads (only when multiple cores are used).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–fasta-input</strong></p></td>
+<td><p>Input is FASTA format.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–fastq-input</strong></p></td>
+<td><p>Input is FASTQ format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–gzip-compressed</strong></p></td>
+<td><p>Input is gzip compressed.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="create-report-files">
+<h3><span class="section-number">9.1.2. </span>Create report files<a class="headerlink" href="#create-report-files" title="Permalink to this headline">¶</a></h3>
+<p>In Kraken 1, report files are generated with a specific command, after the classification (section 3.1.2: <a class="reference internal" href="#create-report-files">Create report files</a>). Once the taxonomic assignation is done, from the Kraken output file we create a report of the analysis by running the <code class="docutils literal notranslate"><span class="pre">kraken-report</span></code> script. Note that the database used must be the same as the one used to generate the output file in the command above. The output file is a tab-delimited file with the following fields, from left to right:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Percentage of reads covered by the clade rooted at this taxon</p></li>
+<li><p>Number of reads covered by the clade rooted at this taxon</p></li>
+<li><p>Number of reads assigned directly to this taxon</p></li>
+<li><p>A rank code, indicating (U)nclassified, (D)omain, (K)ingdom, (P)hylum, (C)lass, (O)rder, (F)amily, (G)enus, or (S)pecies. All other ranks are simply ‘-‘.</p></li>
+<li><p>NCBI taxonomy ID</p></li>
+<li><p>Indented scientific name</p></li>
+</ol>
+</div></blockquote>
+<p>Notice that we will have to redirect the output to a file with <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">--</span><span class="n">db</span> <span class="n">Minikraken</span> <span class="n">filename</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">filename</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to make the taxonomic assignation and create the report file for multiple samples. Notice the assignation of variables <code class="docutils literal notranslate"><span class="pre">filename</span></code> and <code class="docutils literal notranslate"><span class="pre">fname</span></code> to return output files named after the sample.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i in *.fastq
+do
+  filename=$(basename &quot;$i&quot;)
+  fname=&quot;${filename%.fastq}&quot;
+  kraken --db Minikraken --threads 4 --fastq-input $i --output /${fname}.kraken
+  kraken-report --db Minikraken ${fname}.kraken &gt; ${fname}.kraken.report
+done
+</pre></div>
+</div>
+</div>
+<p>To visualize the results of the classification in multi-layerd pie charts, use <code class="docutils literal notranslate"><span class="pre">Krona</span></code>, as described in the section 3.1.2 (see <a class="reference internal" href="3_Metagenomics_v2.html#krona-label"><span class="std std-ref">Visualization of data with Krona</span></a>).</p>
+</div>
+<div class="section" id="building-a-kraken-standard-database-on-hpc-clusters">
+<h3><span class="section-number">9.1.3. </span>Building a Kraken standard database (on HPC clusters)<a class="headerlink" href="#building-a-kraken-standard-database-on-hpc-clusters" title="Permalink to this headline">¶</a></h3>
+<p>The pre-built Minikraken database is useful for a quick metagenomic screening of shotgun data. However, by building larger databases (i.e. a larger set of k-mers gathered) we may increase the sensitivity of the analysis.
+One option is to build the Kraken standard database. To create this database we use the command <code class="docutils literal notranslate"><span class="pre">kraken-build</span></code>, which downlads the <code class="docutils literal notranslate"><span class="pre">RefSeq</span></code> complete genomes for the bacterial, archaeal, and viral domains, and builds the database.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">standard</span> <span class="o">--</span><span class="n">db</span> <span class="n">standardkraken</span><span class="o">.</span><span class="n">folder</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>Usage of the database will require users to keep only the <code class="docutils literal notranslate"><span class="pre">database.idx</span></code>, <code class="docutils literal notranslate"><span class="pre">database.kdb</span></code>, <code class="docutils literal notranslate"><span class="pre">taxonomy/nodes.dmp</span></code> and <code class="docutils literal notranslate"><span class="pre">taxonomy/names.dmp</span></code> files.
+During the database building process some intermediate file are created that may be removed afterwards with the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">db</span> <span class="n">standardkraken</span><span class="o">.</span><span class="n">folder</span> <span class="o">--</span><span class="n">clean</span>
+</pre></div>
+</div>
+</li>
+<li><p>The downloaded RefSeq genomes require 33GB of disk space. The build process will then require approximately 450GB of additional disk space. The final <code class="docutils literal notranslate"><span class="pre">database.idx</span></code>, <code class="docutils literal notranslate"><span class="pre">database.kdb</span></code>, and <code class="docutils literal notranslate"><span class="pre">taxonomy/</span></code> files require 200 Gb of disk space, and running one sample against such database requires 175 Gb of RAM.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="building-a-kraken-custom-database-on-hpc-clusters">
+<h3><span class="section-number">9.1.4. </span>Building a Kraken custom database (on HPC clusters)<a class="headerlink" href="#building-a-kraken-custom-database-on-hpc-clusters" title="Permalink to this headline">¶</a></h3>
+<p>Building kraken custum databases is computationally intensive. You will find a ready to use database.
+Kraken also allows creation of customized databases, where we can choose which sequences to include and the final size of the database. For example if you do not have the computational resources to build and run analyses with a full database of bacterial genomes (or you don’t need to), you may want to build a custom database with only the genomes needed for your application.</p>
+<ol class="arabic">
+<li><p>First of all we choose a name for our database and we create a folder with that name using <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>. Let’s call the database <code class="docutils literal notranslate"><span class="pre">CustomDB</span></code>. This will be the name used in all the dollowing commands after the <code class="docutils literal notranslate"><span class="pre">--db</span></code> option.</p></li>
+<li><p>Download NCBI taxonomy files (the sequence ID to taxon map, the taxonomic names and tree information) with <code class="docutils literal notranslate"><span class="pre">kraken-build</span> <span class="pre">--download-taxonomy</span></code>.
+The taxonomy files are necessary to associate a taxon to the sequence identifier (the GI number in NCBI) of the <code class="docutils literal notranslate"><span class="pre">fasta</span></code> sequences composing our database. For this reason we will build our database only with sequences from the NCBI RefSeq.
+For more information on the NCBI taxonomy visit click <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi.">here</a>. This command will create a sub-folder <code class="docutils literal notranslate"><span class="pre">taxonomy/</span></code> inside our CustomDB folder:</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">download</span><span class="o">-</span><span class="n">taxonomy</span> <span class="o">--</span><span class="n">threads</span> <span class="mi">4</span> <span class="o">--</span><span class="n">db</span> <span class="n">CustomDB</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install a genomic library. RefSeq genomes in fasta file from five standard groups are made easily available in Kraken with the command <strong>kraken-build –download-library</strong>:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>bacteria</em> : RefSeq complete bacterial genomes</p></li>
+<li><p><em>archaea</em> : RefSeq complete archaeal genomes</p></li>
+<li><p><em>plasmid</em> : RefSeq plasmid sequences</p></li>
+<li><p><em>viral</em> : RefSeq complete viral genomes</p></li>
+<li><p><em>human</em> : GRCh38 human genome</p></li>
+</ul>
+<p>The following command will download all the RefSeq bacterial genomes (33Gb size) and create a folder <code class="docutils literal notranslate"><span class="pre">library/</span></code> with a sub-folder <code class="docutils literal notranslate"><span class="pre">bacteria/</span></code> inside your CustomDB folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">download</span><span class="o">-</span><span class="n">library</span> <span class="n">bacteria</span> <span class="o">--</span><span class="n">threads</span> <span class="mi">4</span> <span class="o">--</span><span class="n">db</span> <span class="n">CustomDB</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p>We can add any sort of RefSeq <code class="docutils literal notranslate"><span class="pre">fasta</span></code> sequences to the library with <code class="docutils literal notranslate"><span class="pre">kraken-build</span> <span class="pre">--add-to-library</span></code>. For example we will add to the library of bacterial genomes the RefSeq sequences of mitochodrial genomes. The sequences will be inside the sub-folder <code class="docutils literal notranslate"><span class="pre">added/</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">library</span> <span class="n">mitochondrion</span><span class="o">.</span><span class="mf">1.1</span><span class="o">.</span><span class="n">genomic</span><span class="o">.</span><span class="n">fna</span> <span class="o">--</span><span class="n">threads</span> <span class="mi">4</span> <span class="o">--</span><span class="n">db</span> <span class="n">CustomDB</span>
+<span class="n">kraken</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">library</span> <span class="n">mitochondrion</span><span class="o">.</span><span class="mf">2.1</span><span class="o">.</span><span class="n">genomic</span><span class="o">.</span><span class="n">fna</span> <span class="o">--</span><span class="n">threads</span> <span class="mi">4</span> <span class="o">--</span><span class="n">db</span> <span class="n">CustomDB</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have several <code class="docutils literal notranslate"><span class="pre">fasta</span></code> files to add you can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i in *.fasta
+do
+  kraken-build --add-to-library $i --threads 4 --db CustomDB
+done
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>When analyzing a metagenomics sample using a <code class="docutils literal notranslate"><span class="pre">Kraken</span></code> database the primary source of false positive hits is represented by low-complexity sequences in the genomes themselves (e.g., a string of 31 or more consecutive A’s).
+For this reason, once gathered all the genomes that we want to use for our custom database, low-complexity regions have to be ‘dusted’.
+The program <code class="docutils literal notranslate"><span class="pre">dustmasker</span></code> from <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK279681/">Blast+</a> identifies low-complexity regions and <strong>soft-mask</strong> them (the corresponding sequence is turned to lower-case letters).
+With a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop we run dustmasker on each <code class="docutils literal notranslate"><span class="pre">fasta</span></code> file present in the library folder, and we will pipe (<code class="docutils literal notranslate"><span class="pre">|</span></code>) to dustmasker a <code class="docutils literal notranslate"><span class="pre">sed</span></code> command to replace the low-complexity regions (lower-case) with Ns.
+Notice that the output is redirected (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>) to a temporary file, which is afterwards renamed to replace the original file <code class="docutils literal notranslate"><span class="pre">fasta</span></code> file with the command <code class="docutils literal notranslate"><span class="pre">mv</span></code>.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i in `find CustomDB/library \( -name &#39;*.fna&#39; -o -name &#39;*.ffn&#39; \)`
+do
+  dustmasker -in $i -infmt fasta -outfmt fasta | sed -e &#39;/&gt;/!s/a\|c\|g\|t/N/g&#39; &gt; tempfile
+  mv -f tempfile $i
+done
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p>Some of the options available in Dustmasker:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>-in</strong> &lt;string&gt;</p></td>
+<td><p>input file name</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-infmt</strong> &lt;string&gt;</p></td>
+<td><p>input format (e.g. fasta)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-outfmt8</strong> &lt;string&gt;</p></td>
+<td><p>output format (fasta)</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<ol class="arabic" start="6">
+<li><p>Finally, we build the database with <code class="docutils literal notranslate"><span class="pre">kraken-build</span></code>. With this command, Kraken uses all the masked genomes contained in the library (bacteria and mtDNA RefSeq) to create a database of 31 bp-long k-mers.
+We can choose the size of our custom database (hence the number of k-mers included, and the sensitivity) with the  <code class="docutils literal notranslate"><span class="pre">--max-db-size</span></code> option (8 Gb here).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">build</span> <span class="o">--</span><span class="n">build</span> <span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">size</span> <span class="mi">8</span> <span class="o">--</span><span class="n">db</span> <span class="n">CustomDB</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="taxonomic-assignation-with-kraken-custom-database">
+<h3><span class="section-number">9.1.5. </span>Taxonomic assignation with Kraken custom database<a class="headerlink" href="#taxonomic-assignation-with-kraken-custom-database" title="Permalink to this headline">¶</a></h3>
+<p>Once our custom database is built we can run the command for taxonomic assignation of DNA reads agaisnt the custom database, as in section 1.1 and 1.2.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">db</span> <span class="n">CustomDB</span> <span class="o">--</span><span class="n">fastq</span><span class="o">-</span><span class="nb">input</span> <span class="n">merged</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">--</span><span class="n">gzip</span><span class="o">-</span><span class="n">compressed</span> <span class="o">--</span><span class="n">output</span> <span class="n">sample</span><span class="o">.</span><span class="n">kraken</span>
+<span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">--</span><span class="n">db</span> <span class="n">CustomDB</span> <span class="n">sample</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">sample</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span>
+</pre></div>
+</div>
+<p>Or, again, we can loop the commands if we have various samples.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i in *.fastq
+do
+  filename=$(basename &quot;$i&quot;)
+  fname=&quot;${filename%.fastq}&quot;
+  kraken --db CustomDB --threads 4 --fastq-input $i --output ${fname}.kraken
+  kraken-report --db CustomDB ${fname}.kraken &gt; ${fname}.kraken.report
+done
+</pre></div>
+</div>
+<p>To visualize the results of the classification in multi-layerd pie charts, use <code class="docutils literal notranslate"><span class="pre">Krona</span></code>, as described in the section 3.1.3: <a class="reference internal" href="3_Metagenomics_v2.html#krona-label"><span class="std std-ref">Visualization of data with Krona</span></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="10_R_session.html" class="btn btn-neutral float-left" title="8. R session" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Amine Namouchi &amp; Claudio Ottoni
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

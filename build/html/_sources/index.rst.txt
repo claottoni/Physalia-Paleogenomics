@@ -25,7 +25,9 @@ Contents
    7_VariantsCall
    8_Filtering_SNPs
    9_DIY
-   10_R_session.rst
+   10_R_session
+   11_old_material
+
    
 **Course overview**
 

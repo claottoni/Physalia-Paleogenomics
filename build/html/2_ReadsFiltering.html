@@ -94,6 +94,8 @@
 <li class="toctree-l1"><a class="reference internal" href="7_VariantsCall.html">5. Variant calling and visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_Filtering_SNPs.html">6. Filtering, annotating and combining SNPs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_DIY.html">7. DO-IT-YOURSELF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_R_session.html">8. R session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_old_material.html">9. Material from previous courses</a></li>
 </ul>
 
             
@@ -257,7 +259,8 @@ To run FastQC type the following command:</p>
 <p class="admonition-title">Note</p>
 <ul>
 <li><p>Here we are using a Single-End library, for paired-end libraries the command to clip the adapter and merge the read pairs is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AdapterRemoval</span> <span class="o">--</span><span class="n">file1</span> <span class="n">filename_R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">file2</span> <span class="n">filename_R2</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">basename</span> <span class="n">filename</span> <span class="o">--</span><span class="n">minlength</span> <span class="mi">30</span> <span class="o">--</span><span class="n">trimns</span> <span class="o">--</span><span class="n">trimqualities</span> <span class="o">--</span><span class="n">collapse</span> <span class="o">--</span><span class="n">gzip</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AdapterRemoval</span> <span class="o">--</span><span class="n">file1</span> <span class="n">filename_R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">file2</span> <span class="n">filename_R2</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">basename</span> <span class="n">filename</span> <span class="o">--</span><span class="n">minlength</span> <span class="mi">30</span> <span class="o">--</span><span class="n">trimns</span> <span class="o">--</span><span class="n">trimqualities</span> <span class="o">--</span><span class="n">minquality</span> <span class="mi">25</span> <span class="o">--</span><span class="n">collapse</span> <span class="o">--</span><span class="n">gzip</span>
+<span class="n">AdapterRemoval</span> <span class="o">--</span><span class="n">file1</span> <span class="n">filename_R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">file2</span> <span class="n">filename_R2</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">basename</span> <span class="n">filename</span> <span class="o">--</span><span class="n">minlength</span> <span class="mi">30</span> <span class="o">--</span><span class="n">trimns</span> <span class="o">--</span><span class="n">trimqualities</span> <span class="o">--</span><span class="n">collapse</span> <span class="o">--</span><span class="n">gzip</span>
 </pre></div>
 </div>
 </li>

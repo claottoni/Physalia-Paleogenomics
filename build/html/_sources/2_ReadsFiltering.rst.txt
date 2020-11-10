@@ -81,6 +81,7 @@ Option                              Function
   - Here we are using a Single-End library, for paired-end libraries the command to clip the adapter and merge the read pairs is: 
     ::
 
+      AdapterRemoval --file1 filename_R1.fastq --file2 filename_R2.fastq --basename filename --minlength 30 --trimns --trimqualities --minquality 25 --collapse --gzip
       AdapterRemoval --file1 filename_R1.fastq --file2 filename_R2.fastq --basename filename --minlength 30 --trimns --trimqualities --collapse --gzip
   
   - Several tools can be used for reads pre-processing and filtering, for example: `ClipAndMerge`_, `leeHom`_, `Atropos`_, `fastp`_.

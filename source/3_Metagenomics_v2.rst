@@ -3,11 +3,11 @@ Metagenomic screening of shotgun data
 #####################################
   
   
-*******
-Kraken2
-*******
+********
+Kraken 2
+********
 
-In this hands-on session we will use Kraken2 to screen the metagenomic content of an ancient sample. The first version of Kraken (see :ref:`kraken_label`) uses a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason `Kraken 2`_ was developed.
+In this hands-on session we will use Kraken 2 to screen the metagenomic content of an ancient sample. The first version of Kraken (see :ref:`kraken_label`) uses a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason `Kraken 2`_ was developed.
 Kraken 2 is fast and requires less memory, BUT false positive errors occur in less than 1% of queries (confidence scoring thresholds can be used to call out to detect them).
 The first version of Kraken use a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason `Kraken 2`_ was developed.
 Kraken 2 is fast and requires less memory, BUT the database false positive errors occur in less than 1% of queries (confidence scoring thresholds can be used to call out to detect them).
@@ -200,7 +200,22 @@ We have already created a custom database to use in this hands-on session so we 
   On various test datasets, KrakenUniq gives better recall and precision than other methods and effectively classifies and distinguishes pathogens with low abundance from false positives in infectious disease samples. 
 
     .. _KrakenUniq: https://github.com/fbreitwieser/krakenuniq
-  
+
+
+*******
+Bracken
+*******
+
+Kraken and Kraken 2 classify reads to the best matching location in the taxonomic tree, but they do not estimate abundances of species. 
+To do that we will use Bracken (Bayesian Reestimation of Abundance with KrakEN), which estimates the number of reads originating from each species present in a sample. Bracken computes probabilities that describe how much sequence from each genome in the Kraken database is identical to other genomes in the database, and combine this information with the assignments for a particular sample to estimate abundance at the species level, the genus level, or above. 
+Bracken is compatible with both Kraken 1 and Kraken 2 (just note that the default kmer length is different, 31 in Kraken, 35 in Kraken 2).
+
+Bracken from Minikraken 2
+*************************
+
+
+Bracken from Kraken 2 custom database
+*************************************
 
 
 ***********
