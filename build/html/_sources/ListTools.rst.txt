@@ -1,0 +1,37 @@
+List of Tools
+=============
+
+Data preprocessing
+  * AdapterRemoval: https://github.com/MikkelSchubert/adapterremoval
+*Note: There are many tools for fastq files pre-processing that are also very efficient eg. ClipAndMerge, fastp, Atropos (from CutAdapt).*
+
+Metagenomics screening of shotgun data
+  * kraken: https://ccb.jhu.edu/software/kraken/
+  * krona: https://github.com/marbl/Krona/wiki   
+*Note: There are a variety of tools for metagenomics alayses eg. Kaiju, Metaphlan, Clark... in addition there are packages like metaBIT and MEGAN that also can be used.*
+
+Reads alignment and variants calling
+  * bwa: https://github.com/lh3/bwa
+  * gatk: https://software.broadinstitute.org/gatk/ 
+  * samtools: http://www.htslib.org/
+  * bcftools: http://www.htslib.org/
+
+Filtering and manipulating bam files
+  * picard: https://broadinstitute.github.io/picard/
+  * dedup: https://github.com/apeltzer/DeDup
+
+aDNA deamination detection and rescaling
+  * mapDamage: https://ginolhac.github.io/mapDamage/
+
+Creating summary reports
+  * fastqc: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+  * Qualimap: http://qualimap.bioinfo.cipf.es/
+  * MultiQC: http://multiqc.info/
+
+Integrative genomic viewer
+  * IGV: http://software.broadinstitute.org/software/igv/
+
+Phylogeny
+  * IQ-TREE: http://www.iqtree.org/
+  * Figtree: http://tree.bio.ed.ac.uk/software/figtree/
+
