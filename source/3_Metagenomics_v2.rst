@@ -210,9 +210,11 @@ Kraken and Kraken 2 classify reads to the best matching location in the taxonomi
 To do that we will use Bracken (Bayesian Reestimation of Abundance with KrakEN), which estimates the number of reads originating from each species present in a sample. Bracken computes probabilities that describe how much sequence from each genome in the Kraken database is identical to other genomes in the database, and combine this information with the assignments for a particular sample to estimate abundance at the species level, the genus level, or above. 
 Bracken is compatible with both Kraken 1 and Kraken 2 (just note that the default kmer length is different, 31 in Kraken, 35 in Kraken 2).
 
+Prior to abundance estimation with Bracken, each genome in the Kraken database must be divided into read-length kmers. In turn, these read-length kmers must be classified.
+
 Bracken from Minikraken 2
 *************************
-
+As pre-built database, MiniKraken2 contains  
 
 Bracken from Kraken 2 custom database
 *************************************
