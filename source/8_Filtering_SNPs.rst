@@ -9,15 +9,26 @@ The ``-h`` option will display the following message:
 
 ::
 
-  snpToolkit -h
-  
-  positional arguments:
-    {annotate,combine}  commands
-      annotate          Please provide one or multiple vcf files
-      combine           combine snpToolkit output files in one alignment in fasta format
+$ snptoolkit -h
+usage: snptoolkit [-h] {explore,annotate,combine,viz,expand} ...
+
+    snpToolkit takes vcf files, as well as bam files (optional) as inputs. The vcf files could be generated using samtools/bcftools, gatk HaplotypeCaller or freeBayes.
+    Please visit https://github.com/Amine-Namouchi/snpToolkit for more information.
+
+positional arguments:
+  {explore,annotate,combine,viz,expand}
+                        commands
+    explore             explore your vcf files before annotation
+    annotate            Annotate one or multiple vcf files
+    combine             combine snpToolkit output files in one alignment in fasta format
+    viz                 visualize snptoolkit output files
+    expand              expand existent list of polymorphic sites when new SNP output files are availble
+
+optional arguments:
+  -h, --help            show this help message and exit
 
 
-Two options are possible: ``annotate`` or ``combine``. 
+Five options are possible: ``explore``, ``annotate``, ``combine``, ``viz``, ``expand``. 
 
 ***************************
 SNPs filtering and annotion
@@ -27,32 +38,25 @@ The ``snpToolkit annotate`` command will display general information about the u
 
 ::
 
-  snpToolkit annotate
-  
-  usage: snpToolkit annotate [-h] -i IDENTIFIER -g GENBANK
-                                [-f EXCLUDECLOSESNPS] [-q QUALITY] [-d DEPTH]
-                                [-r RATIO] [-e EXCLUDE] [--plot]
-  
-  optional arguments:
-    -h, --help           show this help message and exit
-  
-  snpToolkit annotate required options:
-    -i IDENTIFIER        provide a specific identifier to recognize the file(s)
-                         to be analyzed
-    -g GENBANK           Please provide a genbank file 
-  
-  snpToolkit annotate additional options:
-    -f EXCLUDECLOSESNPS  exclude SNPs if the distance between them is lower then
-                         the specified window size in bp
-    -q QUALITY           quality score to consider as a cutoff for variant
-                         calling. default value [20]
-    -d DEPTH             minimum depth caverage. default value [3]
-    -r RATIO             minimum ratio that correspond to the number of reads
-                         that has the mutated allele / total depth in that
-                         particular position. default value [0]
-    -e EXCLUDE           provide a tab file with genomic regions to exclude in
-                         this format: region1 start stop
+  snptoolkit annotate -h
+usage: snptoolkit annotate [-h] -i IDENTIFIER -g GENBANK [-p PROCESSORS] [-f EXCLUDECLOSESNPS] [-q QUALITY] [-d DEPTH] [-r RATIO] [-e EXCLUDE]
 
+optional arguments:
+  -h, --help           show this help message and exit
+
+snpToolkit annotate required options:
+  -i IDENTIFIER        provide a specific identifier to recognize the file(s) to be analyzed
+  -g GENBANK           Pleae provide a genbank file
+
+snpToolkit annotate additional options:
+  -p PROCESSORS        number of vcf files to be annotated in parallel default value [1]
+  -f EXCLUDECLOSESNPS  exclude SNPs if the distance between them is lower then the specified window size in bp
+  -q QUALITY           quality score to consider as a cutoff for variant calling. default value [20]
+  -d DEPTH             minimum depth caverage. default value [3]
+  -r RATIO             minimum ratio that correspond to the number of reads that has the mutated allele / total depth in that particular position. default
+                       value [0]
+  -e EXCLUDE           provide a tab file with genomic regions to exclude in this format: region start stop. region must correspond to the same name(s) of
+                       chromsome and plasmids as in the genbank file
 
 Here is a simple example on how to use snpToolkit:
 ::
@@ -71,9 +75,55 @@ snpToolkit can automatically recogninze ``vcf`` files generated with the followi
 
 The output file(s) of snpToolkit is a tabulated file(s) that you can open with Microsoft Excel and it will look as follow:
 
-.. image:: images/snpToolkitHeader.png
+
+.. code-block:: bash
+
+   ##snpToolkit=__version__
+   ##commandline= snptoolkit annotate -i vcf -g GCF_000009065.1_ASM906v1_genomic.gbff -d 5 -q 30 -r 0.9 -p 4
+   ##VcfFile=sample5.vcf.gz
+   ##Total number of SNPs before snpToolkit processing: 406
+   ##The options -f and -e were not used
+   ##Filtred SNPs. Among the 406 SNPs, the number of those with a quality score >= 30, a depth >= 5 and a ratio >= 0.9 is: 218
+   ##After mapping, SNPs were located in:
+   ##NC_003131.1: Yersinia pestis CO92 plasmid pCD1, complete sequence 70305 bp
+   ##NC_003143.1: Yersinia pestis CO92, complete genome 4653728 bp
+   ##The mapped and annotated SNPs are distributed as follow:
+   ##Location      Genes   RBS     tRNA    rRNA    ncRNA   Pseudogenes     intergenic      Synonymous      NonSynonumous
+   ##SNPs in NC_003143.1: Yersinia pestis CO92, complete genome 4653728 bp 155     0       0       1       0       0       57      54      101
+   ##SNPs in NC_003131.1: Yersinia pestis CO92 plasmid pCD1, complete sequence 70305 bp    2       0       0       0       0       0       3       1       1
+   ##Syn=Synonymous NS=Non-Synonymous
+   ##Coordinates   REF     SNP     Depth   Nb of reads REF Nb reads SNPs   Ratio   Quality Annotation      Product Orientation     Coordinates in gene     Ref codon       SNP codon       Ref AA  SNP AA  Coordinates protein     Effect  Location
+   82      C       A       36      0       34      1.0     138.0   intergenic      .       +       .       -       -       -       -       -       -       NC_003143.1: Yersinia pestis CO92, complete genome 4653728 bp
+   130     G       C       28      0       27      1.0     144.0   intergenic      .       +       .       -       -       -       -       -       -       NC_003143.1: Yersinia pestis CO92, complete genome 4653728 bp
+   855     G       A       69      0       62      1.0     228.0   YPO_RS01010|asnC        transcriptional regulator AsnC  -       411     ACC     AC[T]   T       T       137     Syn     NC_003143.1: Yersinia pestis CO92, complete genome 4653728 bp
+
 
 The header of the generated snpToolkit output file includes useful information e.g. raw number of SNPs, Number of filtered SNPs, SNPs distribution, etc... 
+The SNPs annotation is organized in tab delimited table. The columns of this table are:
+
+=======================  ========
+Column name              Description
+=======================  ========
+Coordinates              SNP coordinate 
+REF                      Reference allele
+SNP                      New allele in analyzed sample 
+Depth                    Total depth of coverage 
+Nb of reads REF          Number of reads with the reference allele
+Nb reads SNPs            Number of reads with the new allele
+Ratio                    Nb reads SNPs/(Nb of reads REF+Nb reads SNPs)
+Quality                  Quality score
+Annotation               Distribution within genes or intergenic
+Product                  Functional product of the gene
+Orientation              Gene orientation
+Coordinates in gene      Coordinate of the SNP within the gene
+Ref codon                Reference codon, ACC in the example above
+SNP codon                New codon, AC[T]
+Ref AA                   Amino Acid corresponding to reference codon 
+SNP AA                   Amino Acid corresponding to new codon
+Coordinates protein      Coordinate of the Amino Acid 
+Effect                   Could be Synonymous (Syn) or Non-Synonymous (NS)
+Location                 ID of the chromosome and plasmids.
+=======================  ========
 
 
 *********************************************
@@ -83,25 +133,22 @@ Compare and combine multiple annotation files
 After generating a set of output files, you can run ``snpToolkit combine``:
 ::
 
-  usage: snpToolkit combine [-h] --location LOCATION [-r RATIO] [-d DEPTH]
-                               [--bam BAMFOLDER] [--snps {ns,s,all,inter}]
-  
-  optional arguments:
-    -h, --help            show this help message and exit
-  
-  snpToolkit combine required options:
-    --location LOCATION         provide the name of the locus you want to create
-    						fasta alignment for
-  
-  snpToolkit additional options:
-    -r RATIO              SNP ratio
-    -d DEPTH              depth cutoff for cheking missing data
-    --bam BAMFOLDER       path to the folder containing bam files
-    --snps {ns,s,all,inter}
-                          Specify if you want to concatenate all SNPs or just
-                          synonymous (s), non-synonymous (ns) or intergenic
-                          (inter) SNPs. default [all]
-                          
+$ snptoolkit combine  -h
+usage: snptoolkit combine [-h] --location LOCATION [-r RATIO] [--bam BAMFILTER BAMFILTER BAMFILTER] [--snps {ns,s,all,inter}] [-e EXCLUDE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+snpToolkit combine required options:
+  --location LOCATION   provide for example the name of the chromosome or plasmid you want to create fasta alignemnt for
+
+snpToolkit additional options:
+  -r RATIO              new versus reference allele ratio to filter SNPs from snpToolkit outputs. default [0]
+  --bam BAMFILTER BAMFILTER BAMFILTER
+                        provide the depth, ratio and the path to the folder containing the bam files. eg. 3 0.9 path
+  --snps {ns,s,all,inter}
+                        Specify if you want to concatenate all SNPs or just synonymous (s), non-synonymous (ns) or intergenic (inter) SNPs. default [all]
+  -e EXCLUDE            Provide a yaml file with keywords and coordinates to be excluded                          
 
 ``snpToolkit combine`` will compare all the SNPs identified in each file and create two additional output files: 
 
