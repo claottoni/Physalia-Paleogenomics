@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,27 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. DO-IT-YOURSELF" href="9_DIY.html" />
@@ -51,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Physalia Paleogenomics
+            <a href="index.html" class="icon icon-home"> Physalia Paleogenomics
           
 
           
@@ -74,7 +73,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -102,7 +100,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -141,9 +138,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li><span class="section-number">6. </span>Filtering, annotating and combining SNPs</li>
+      <li>6. Filtering, annotating and combining SNPs</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,48 +160,53 @@
            <div itemprop="articleBody">
             
   <div class="section" id="filtering-annotating-and-combining-snps">
-<h1><span class="section-number">6. </span>Filtering, annotating and combining SNPs<a class="headerlink" href="#filtering-annotating-and-combining-snps" title="Permalink to this headline">¶</a></h1>
+<h1>6. Filtering, annotating and combining SNPs<a class="headerlink" href="#filtering-annotating-and-combining-snps" title="Permalink to this headline">¶</a></h1>
 <p>To investigate the genetic variants in the <code class="docutils literal notranslate"><span class="pre">vcf</span></code> files we will use the program <a class="reference external" href="https://github.com/Amine-Namouchi/snpToolkit">snpToolkit</a>.
 The <code class="docutils literal notranslate"><span class="pre">-h</span></code> option will display the following message:</p>
 <blockquote>
 <div></div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snpToolkit</span> <span class="o">-</span><span class="n">h</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ snptoolkit -h
+usage: snptoolkit [-h] {explore,annotate,combine,viz,expand} ...
 
-<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="p">{</span><span class="n">annotate</span><span class="p">,</span><span class="n">combine</span><span class="p">}</span>  <span class="n">commands</span>
-    <span class="n">annotate</span>          <span class="n">Please</span> <span class="n">provide</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">multiple</span> <span class="n">vcf</span> <span class="n">files</span>
-    <span class="n">combine</span>           <span class="n">combine</span> <span class="n">snpToolkit</span> <span class="n">output</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">one</span> <span class="n">alignment</span> <span class="ow">in</span> <span class="n">fasta</span> <span class="nb">format</span>
+    snpToolkit takes vcf files, as well as bam files (optional) as inputs. The vcf files could be generated using samtools/bcftools, gatk HaplotypeCaller or freeBayes.
+    Please visit https://github.com/Amine-Namouchi/snpToolkit for more information.
+
+positional arguments:
+  {explore,annotate,combine,viz,expand}
+                        commands
+    explore             explore your vcf files before annotation
+    annotate            Annotate one or multiple vcf files
+    combine             combine snpToolkit output files in one alignment in fasta format
+    viz                 visualize snptoolkit output files
+    expand              expand existent list of polymorphic sites when new SNP output files are availble
+
+optional arguments:
+  -h, --help            show this help message and exit
 </pre></div>
 </div>
-<p>Two options are possible: <code class="docutils literal notranslate"><span class="pre">annotate</span></code> or <code class="docutils literal notranslate"><span class="pre">combine</span></code>.</p>
+<p>Five options are possible: <code class="docutils literal notranslate"><span class="pre">explore</span></code>, <code class="docutils literal notranslate"><span class="pre">annotate</span></code>, <code class="docutils literal notranslate"><span class="pre">combine</span></code>, <code class="docutils literal notranslate"><span class="pre">viz</span></code>, <code class="docutils literal notranslate"><span class="pre">expand</span></code>.</p>
 <div class="section" id="snps-filtering-and-annotion">
-<h2><span class="section-number">6.1. </span>SNPs filtering and annotion<a class="headerlink" href="#snps-filtering-and-annotion" title="Permalink to this headline">¶</a></h2>
+<h2>6.1. SNPs filtering and annotion<a class="headerlink" href="#snps-filtering-and-annotion" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">annotate</span></code> command will display general information about the usage of the program:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snpToolkit</span> <span class="n">annotate</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snptoolkit annotate -h
+usage: snptoolkit annotate <span class="o">[</span>-h<span class="o">]</span> -i IDENTIFIER -g GENBANK <span class="o">[</span>-p PROCESSORS<span class="o">]</span> <span class="o">[</span>-f EXCLUDECLOSESNPS<span class="o">]</span> <span class="o">[</span>-q QUALITY<span class="o">]</span> <span class="o">[</span>-d DEPTH<span class="o">]</span> <span class="o">[</span>-r RATIO<span class="o">]</span> <span class="o">[</span>-e EXCLUDE<span class="o">]</span>
 
-<span class="n">usage</span><span class="p">:</span> <span class="n">snpToolkit</span> <span class="n">annotate</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="o">-</span><span class="n">i</span> <span class="n">IDENTIFIER</span> <span class="o">-</span><span class="n">g</span> <span class="n">GENBANK</span>
-                              <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">EXCLUDECLOSESNPS</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">q</span> <span class="n">QUALITY</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DEPTH</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="n">RATIO</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">e</span> <span class="n">EXCLUDE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">plot</span><span class="p">]</span>
+optional arguments:
+  -h, --help           show this <span class="nb">help</span> message and <span class="nb">exit</span>
 
-<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+snpToolkit annotate required options:
+  -i IDENTIFIER        provide a specific identifier to recognize the file<span class="o">(</span>s<span class="o">)</span> to be analyzed
+  -g GENBANK           Pleae provide a genbank file
 
-<span class="n">snpToolkit</span> <span class="n">annotate</span> <span class="n">required</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">i</span> <span class="n">IDENTIFIER</span>        <span class="n">provide</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">identifier</span> <span class="n">to</span> <span class="n">recognize</span> <span class="n">the</span> <span class="n">file</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-                       <span class="n">to</span> <span class="n">be</span> <span class="n">analyzed</span>
-  <span class="o">-</span><span class="n">g</span> <span class="n">GENBANK</span>           <span class="n">Please</span> <span class="n">provide</span> <span class="n">a</span> <span class="n">genbank</span> <span class="n">file</span>
-
-<span class="n">snpToolkit</span> <span class="n">annotate</span> <span class="n">additional</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">f</span> <span class="n">EXCLUDECLOSESNPS</span>  <span class="n">exclude</span> <span class="n">SNPs</span> <span class="k">if</span> <span class="n">the</span> <span class="n">distance</span> <span class="n">between</span> <span class="n">them</span> <span class="ow">is</span> <span class="n">lower</span> <span class="n">then</span>
-                       <span class="n">the</span> <span class="n">specified</span> <span class="n">window</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">bp</span>
-  <span class="o">-</span><span class="n">q</span> <span class="n">QUALITY</span>           <span class="n">quality</span> <span class="n">score</span> <span class="n">to</span> <span class="n">consider</span> <span class="k">as</span> <span class="n">a</span> <span class="n">cutoff</span> <span class="k">for</span> <span class="n">variant</span>
-                       <span class="n">calling</span><span class="o">.</span> <span class="n">default</span> <span class="n">value</span> <span class="p">[</span><span class="mi">20</span><span class="p">]</span>
-  <span class="o">-</span><span class="n">d</span> <span class="n">DEPTH</span>             <span class="n">minimum</span> <span class="n">depth</span> <span class="n">caverage</span><span class="o">.</span> <span class="n">default</span> <span class="n">value</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-  <span class="o">-</span><span class="n">r</span> <span class="n">RATIO</span>             <span class="n">minimum</span> <span class="n">ratio</span> <span class="n">that</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">reads</span>
-                       <span class="n">that</span> <span class="n">has</span> <span class="n">the</span> <span class="n">mutated</span> <span class="n">allele</span> <span class="o">/</span> <span class="n">total</span> <span class="n">depth</span> <span class="ow">in</span> <span class="n">that</span>
-                       <span class="n">particular</span> <span class="n">position</span><span class="o">.</span> <span class="n">default</span> <span class="n">value</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="o">-</span><span class="n">e</span> <span class="n">EXCLUDE</span>           <span class="n">provide</span> <span class="n">a</span> <span class="n">tab</span> <span class="n">file</span> <span class="k">with</span> <span class="n">genomic</span> <span class="n">regions</span> <span class="n">to</span> <span class="n">exclude</span> <span class="ow">in</span>
-                       <span class="n">this</span> <span class="nb">format</span><span class="p">:</span> <span class="n">region1</span> <span class="n">start</span> <span class="n">stop</span>
+snpToolkit annotate additional options:
+  -p PROCESSORS        number of vcf files to be annotated in parallel default value <span class="o">[</span><span class="m">1</span><span class="o">]</span>
+  -f EXCLUDECLOSESNPS  exclude SNPs <span class="k">if</span> the distance between them is lower <span class="k">then</span> the specified window size in bp
+  -q QUALITY           quality score to consider as a cutoff <span class="k">for</span> variant calling. default value <span class="o">[</span><span class="m">20</span><span class="o">]</span>
+  -d DEPTH             minimum depth caverage. default value <span class="o">[</span><span class="m">3</span><span class="o">]</span>
+  -r RATIO             minimum ratio that correspond to the number of reads that has the mutated allele / total depth in that particular position. default
+                      value <span class="o">[</span><span class="m">0</span><span class="o">]</span>
+  -e EXCLUDE           provide a tab file with genomic regions to exclude in this format: region start stop. region must correspond to the same name<span class="o">(</span>s<span class="o">)</span> of
+                      chromsome and plasmids as in the genbank file
 </pre></div>
 </div>
 <p>Here is a simple example on how to use snpToolkit:</p>
@@ -222,32 +224,137 @@ The <code class="docutils literal notranslate"><span class="pre">-h</span></code
 </ul>
 </div>
 <p>The output file(s) of snpToolkit is a tabulated file(s) that you can open with Microsoft Excel and it will look as follow:</p>
-<img alt="_images/snpToolkitHeader.png" src="_images/snpToolkitHeader.png" />
-<p>The header of the generated snpToolkit output file includes useful information e.g. raw number of SNPs, Number of filtered SNPs, SNPs distribution, etc…</p>
-</div>
-<div class="section" id="compare-and-combine-multiple-annotation-files">
-<h2><span class="section-number">6.2. </span>Compare and combine multiple annotation files<a class="headerlink" href="#compare-and-combine-multiple-annotation-files" title="Permalink to this headline">¶</a></h2>
-<p>After generating a set of output files, you can run <code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">combine</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">snpToolkit</span> <span class="n">combine</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="o">--</span><span class="n">location</span> <span class="n">LOCATION</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="n">RATIO</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DEPTH</span><span class="p">]</span>
-                             <span class="p">[</span><span class="o">--</span><span class="n">bam</span> <span class="n">BAMFOLDER</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">snps</span> <span class="p">{</span><span class="n">ns</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="nb">all</span><span class="p">,</span><span class="n">inter</span><span class="p">}]</span>
-
-<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-
-<span class="n">snpToolkit</span> <span class="n">combine</span> <span class="n">required</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">location</span> <span class="n">LOCATION</span>         <span class="n">provide</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">locus</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">create</span>
-                                              <span class="n">fasta</span> <span class="n">alignment</span> <span class="k">for</span>
-
-<span class="n">snpToolkit</span> <span class="n">additional</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">r</span> <span class="n">RATIO</span>              <span class="n">SNP</span> <span class="n">ratio</span>
-  <span class="o">-</span><span class="n">d</span> <span class="n">DEPTH</span>              <span class="n">depth</span> <span class="n">cutoff</span> <span class="k">for</span> <span class="n">cheking</span> <span class="n">missing</span> <span class="n">data</span>
-  <span class="o">--</span><span class="n">bam</span> <span class="n">BAMFOLDER</span>       <span class="n">path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">folder</span> <span class="n">containing</span> <span class="n">bam</span> <span class="n">files</span>
-  <span class="o">--</span><span class="n">snps</span> <span class="p">{</span><span class="n">ns</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="nb">all</span><span class="p">,</span><span class="n">inter</span><span class="p">}</span>
-                        <span class="n">Specify</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">concatenate</span> <span class="nb">all</span> <span class="n">SNPs</span> <span class="ow">or</span> <span class="n">just</span>
-                        <span class="n">synonymous</span> <span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">non</span><span class="o">-</span><span class="n">synonymous</span> <span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="ow">or</span> <span class="n">intergenic</span>
-                        <span class="p">(</span><span class="n">inter</span><span class="p">)</span> <span class="n">SNPs</span><span class="o">.</span> <span class="n">default</span> <span class="p">[</span><span class="nb">all</span><span class="p">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">##snpToolkit=__version__</span>
+<span class="c1">##commandline= snptoolkit annotate -i vcf -g GCF_000009065.1_ASM906v1_genomic.gbff -d 5 -q 30 -r 0.9 -p 4</span>
+<span class="c1">##VcfFile=sample5.vcf.gz</span>
+<span class="c1">##Total number of SNPs before snpToolkit processing: 406</span>
+<span class="c1">##The options -f and -e were not used</span>
+<span class="c1">##Filtred SNPs. Among the 406 SNPs, the number of those with a quality score &gt;= 30, a depth &gt;= 5 and a ratio &gt;= 0.9 is: 218</span>
+<span class="c1">##After mapping, SNPs were located in:</span>
+<span class="c1">##NC_003131.1: Yersinia pestis CO92 plasmid pCD1, complete sequence 70305 bp</span>
+<span class="c1">##NC_003143.1: Yersinia pestis CO92, complete genome 4653728 bp</span>
+<span class="c1">##The mapped and annotated SNPs are distributed as follow:</span>
+<span class="c1">##Location      Genes   RBS     tRNA    rRNA    ncRNA   Pseudogenes     intergenic      Synonymous      NonSynonumous</span>
+<span class="c1">##SNPs in NC_003143.1: Yersinia pestis CO92, complete genome 4653728 bp 155     0       0       1       0       0       57      54      101</span>
+<span class="c1">##SNPs in NC_003131.1: Yersinia pestis CO92 plasmid pCD1, complete sequence 70305 bp    2       0       0       0       0       0       3       1       1</span>
+<span class="c1">##Syn=Synonymous NS=Non-Synonymous</span>
+<span class="c1">##Coordinates   REF     SNP     Depth   Nb of reads REF Nb reads SNPs   Ratio   Quality Annotation      Product Orientation     Coordinates in gene     Ref codon       SNP codon       Ref AA  SNP AA  Coordinates protein     Effect  Location</span>
+<span class="m">82</span>      C       A       <span class="m">36</span>      <span class="m">0</span>       <span class="m">34</span>      <span class="m">1</span>.0     <span class="m">138</span>.0   intergenic      .       +       .       -       -       -       -       -       -       NC_003143.1: Yersinia pestis CO92, <span class="nb">complete</span> genome <span class="m">4653728</span> bp
+<span class="m">130</span>     G       C       <span class="m">28</span>      <span class="m">0</span>       <span class="m">27</span>      <span class="m">1</span>.0     <span class="m">144</span>.0   intergenic      .       +       .       -       -       -       -       -       -       NC_003143.1: Yersinia pestis CO92, <span class="nb">complete</span> genome <span class="m">4653728</span> bp
+<span class="m">855</span>     G       A       <span class="m">69</span>      <span class="m">0</span>       <span class="m">62</span>      <span class="m">1</span>.0     <span class="m">228</span>.0   YPO_RS01010<span class="p">|</span>asnC        transcriptional regulator AsnC  -       <span class="m">411</span>     ACC     AC<span class="o">[</span>T<span class="o">]</span>   T       T       <span class="m">137</span>     Syn     NC_003143.1: Yersinia pestis CO92, <span class="nb">complete</span> genome <span class="m">4653728</span> bp
 </pre></div>
 </div>
+<p>The header of the generated snpToolkit output file includes useful information e.g. raw number of SNPs, Number of filtered SNPs, SNPs distribution, etc…
+The SNPs annotation is organized in tab delimited table. The columns of this table are:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Column name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Coordinates</p></td>
+<td><p>SNP coordinate</p></td>
+</tr>
+<tr class="row-odd"><td><p>REF</p></td>
+<td><p>Reference allele</p></td>
+</tr>
+<tr class="row-even"><td><p>SNP</p></td>
+<td><p>New allele in analyzed sample</p></td>
+</tr>
+<tr class="row-odd"><td><p>Depth</p></td>
+<td><p>Total depth of coverage</p></td>
+</tr>
+<tr class="row-even"><td><p>Nb of reads REF</p></td>
+<td><p>Number of reads with the reference allele</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nb reads SNPs</p></td>
+<td><p>Number of reads with the new allele</p></td>
+</tr>
+<tr class="row-even"><td><p>Ratio</p></td>
+<td><p>Nb reads SNPs/(Nb of reads REF+Nb reads SNPs)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quality</p></td>
+<td><p>Quality score</p></td>
+</tr>
+<tr class="row-even"><td><p>Annotation</p></td>
+<td><p>Distribution within genes or intergenic</p></td>
+</tr>
+<tr class="row-odd"><td><p>Product</p></td>
+<td><p>Functional product of the gene</p></td>
+</tr>
+<tr class="row-even"><td><p>Orientation</p></td>
+<td><p>Gene orientation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Coordinates in gene</p></td>
+<td><p>Coordinate of the SNP within the gene</p></td>
+</tr>
+<tr class="row-even"><td><p>Ref codon</p></td>
+<td><p>Reference codon, ACC in the example above</p></td>
+</tr>
+<tr class="row-odd"><td><p>SNP codon</p></td>
+<td><p>New codon, AC[T]</p></td>
+</tr>
+<tr class="row-even"><td><p>Ref AA</p></td>
+<td><p>Amino Acid corresponding to reference codon</p></td>
+</tr>
+<tr class="row-odd"><td><p>SNP AA</p></td>
+<td><p>Amino Acid corresponding to new codon</p></td>
+</tr>
+<tr class="row-even"><td><p>Coordinates protein</p></td>
+<td><p>Coordinate of the Amino Acid</p></td>
+</tr>
+<tr class="row-odd"><td><p>Effect</p></td>
+<td><p>Could be Synonymous (Syn) or Non-Synonymous (NS)</p></td>
+</tr>
+<tr class="row-even"><td><p>Location</p></td>
+<td><p>ID of the chromosome and plasmids.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="compare-and-combine-multiple-annotation-files">
+<h2>6.2. Compare and combine multiple annotation files<a class="headerlink" href="#compare-and-combine-multiple-annotation-files" title="Permalink to this headline">¶</a></h2>
+<p>After generating a set of output files, you can run <code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">combine</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ snptoolkit combine  -h
+</pre></div>
+</div>
+<p>usage: snptoolkit combine [-h] –location LOCATION [-r RATIO] [–bam BAMFILTER BAMFILTER BAMFILTER] [–snps {ns,s,all,inter}] [-e EXCLUDE]</p>
+<dl>
+<dt>optional arguments:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>show this help message and exit</p>
+</dd>
+</dl>
+</dd>
+<dt>snpToolkit combine required options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--location <var>LOCATION</var></span></kbd></dt>
+<dd><p>provide for example the name of the chromosome or plasmid you want to create fasta alignemnt for</p>
+</dd>
+</dl>
+</dd>
+<dt>snpToolkit additional options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-r <var>RATIO</var></span></kbd></dt>
+<dd><p>new versus reference allele ratio to filter SNPs from snpToolkit outputs. default [0]</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>–bam BAMFILTER BAMFILTER BAMFILTER</dt><dd><p>provide the depth, ratio and the path to the folder containing the bam files. eg. 3 0.9 path</p>
+</dd>
+<dt>–snps {ns,s,all,inter}</dt><dd><p>Specify if you want to concatenate all SNPs or just synonymous (s), non-synonymous (ns) or intergenic (inter) SNPs. default [all]</p>
+</dd>
+</dl>
+<dl class="option-list">
+<dt><kbd><span class="option">-e <var>EXCLUDE</var></span></kbd></dt>
+<dd><p>Provide a yaml file with keywords and coordinates to be excluded</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p><code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">combine</span></code> will compare all the SNPs identified in each file and create two additional output files:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -348,7 +455,7 @@ ATCGGGTATGCCAATGCGT
 <p>The <code class="docutils literal notranslate"><span class="pre">fasta</span></code> output file will be used to generate a maximum likelihood tree using <code class="docutils literal notranslate"><span class="pre">IQ-TREE</span></code></p>
 </div>
 <div class="section" id="phylogenetic-tree-reconstruction">
-<h2><span class="section-number">6.3. </span>Phylogenetic tree reconstruction<a class="headerlink" href="#phylogenetic-tree-reconstruction" title="Permalink to this headline">¶</a></h2>
+<h2>6.3. Phylogenetic tree reconstruction<a class="headerlink" href="#phylogenetic-tree-reconstruction" title="Permalink to this headline">¶</a></h2>
 <p>There are several tools to build phylogenetic trees. All of these tools, use an alignment file as input file. Now that we have generated an alignment file in <code class="docutils literal notranslate"><span class="pre">fasta</span></code> format, we will use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</span></code> to build a maximum likelihood tree.
 We use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</span></code> for several reasons:</p>
 <ul>
@@ -383,19 +490,11 @@ We use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</spa
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Amine Namouchi &amp; Claudio Ottoni
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -406,6 +505,7 @@ We use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</spa
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

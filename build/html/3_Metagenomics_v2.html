@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,29 +12,27 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Alignment of reads to a reference genome" href="4_ReadsMapping_v2.html" />
@@ -51,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Physalia Paleogenomics
+            <a href="index.html" class="icon icon-home"> Physalia Paleogenomics
           
 
           
@@ -74,7 +73,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -111,7 +109,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -150,9 +147,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li><span class="section-number">3. </span>Metagenomic screening of shotgun data</li>
+      <li>3. Metagenomic screening of shotgun data</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -172,9 +169,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="metagenomic-screening-of-shotgun-data">
-<h1><span class="section-number">3. </span>Metagenomic screening of shotgun data<a class="headerlink" href="#metagenomic-screening-of-shotgun-data" title="Permalink to this headline">¶</a></h1>
+<h1>3. Metagenomic screening of shotgun data<a class="headerlink" href="#metagenomic-screening-of-shotgun-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="kraken-2">
-<h2><span class="section-number">3.1. </span>Kraken 2<a class="headerlink" href="#kraken-2" title="Permalink to this headline">¶</a></h2>
+<h2>3.1. Kraken 2<a class="headerlink" href="#kraken-2" title="Permalink to this headline">¶</a></h2>
 <p>In this hands-on session we will use Kraken 2 to screen the metagenomic content of an ancient sample. The first version of Kraken (see <a class="reference internal" href="11_old_material.html#kraken-label"><span class="std std-ref">Kraken</span></a>) uses a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml">Kraken 2</a> was developed.
 Kraken 2 is fast and requires less memory, BUT false positive errors occur in less than 1% of queries (confidence scoring thresholds can be used to call out to detect them).
 The first version of Kraken use a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml">Kraken 2</a> was developed.
@@ -193,7 +190,7 @@ By default, Kraken 2 will attempt to use the dustmasker or  segmasker programs p
 <blockquote>
 <div></div></blockquote>
 <div class="section" id="minikraken2">
-<h3><span class="section-number">3.1.1. </span>Minikraken2<a class="headerlink" href="#minikraken2" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.1. Minikraken2<a class="headerlink" href="#minikraken2" title="Permalink to this headline">¶</a></h3>
 <p>We will first use a pre-built 8 GB Kraken database, called <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml?t=downloads">Minikraken2</a>, constructed from complete dusted bacterial, archaeal, and viral genomes in RefSeq. You can download the pre-built <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml?t=downloads">Minikraken2</a> database from the program’s website with <code class="docutils literal notranslate"><span class="pre">wget</span></code>, and extract the archive content with <code class="docutils literal notranslate"><span class="pre">tar</span></code>:
 You can download the pre-built <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml?t=downloads">Minikraken2</a> database (containing bacteria, viral and archaea sequences) from the website with <code class="docutils literal notranslate"><span class="pre">wget</span></code>, and extract the archive content with <code class="docutils literal notranslate"><span class="pre">tar</span></code>:</p>
 <blockquote>
@@ -258,7 +255,7 @@ grandparent taxon is at the genus rank.</p></li>
 </div></blockquote>
 </div>
 <div class="section" id="visualization-of-data-with-krona">
-<span id="krona-label"></span><h3><span class="section-number">3.1.2. </span>Visualization of data with Krona<a class="headerlink" href="#visualization-of-data-with-krona" title="Permalink to this headline">¶</a></h3>
+<span id="krona-label"></span><h3>3.1.2. Visualization of data with Krona<a class="headerlink" href="#visualization-of-data-with-krona" title="Permalink to this headline">¶</a></h3>
 <p>Finally, we can visualize the results of the Kraken2 analysis with <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a>, which disaplys hierarchical data (like taxonomic assignation) in multi-layerd pie charts.
 The interactive charts created by Krona are in the <code class="docutils literal notranslate"><span class="pre">html</span></code> format and can be viewed with any web browser.
 We will convert the kraken output in html format using the program <code class="docutils literal notranslate"><span class="pre">ktImportTaxonomy</span></code>, which parses the information relative to the query ID and the taxonomy ID.</p>
@@ -300,7 +297,7 @@ We will convert the kraken output in html format using the program <code class="
 <img alt="_images/krona.png" src="_images/krona.png" />
 </div>
 <div class="section" id="kraken-2-custom-database">
-<h3><span class="section-number">3.1.3. </span>Kraken 2 Custom Database<a class="headerlink" href="#kraken-2-custom-database" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.3. Kraken 2 Custom Database<a class="headerlink" href="#kraken-2-custom-database" title="Permalink to this headline">¶</a></h3>
 <p>We have already created a custom database to use in this hands-on session so we can go straight to the classification (step 4). However, we report here all the commands to build a Kraken2 database (steps 1-3).</p>
 <ol class="arabic">
 <li><p>The first step is to create a new folder that will contain your custom database (choose an appropriate name for the folder-database, here we will call it <code class="docutils literal notranslate"><span class="pre">CustomDB</span></code>).
@@ -386,19 +383,21 @@ On various test datasets, KrakenUniq gives better recall and precision than othe
 </div>
 </div>
 <div class="section" id="bracken">
-<h2><span class="section-number">3.2. </span>Bracken<a class="headerlink" href="#bracken" title="Permalink to this headline">¶</a></h2>
+<h2>3.2. Bracken<a class="headerlink" href="#bracken" title="Permalink to this headline">¶</a></h2>
 <p>Kraken and Kraken 2 classify reads to the best matching location in the taxonomic tree, but they do not estimate abundances of species.
 To do that we will use Bracken (Bayesian Reestimation of Abundance with KrakEN), which estimates the number of reads originating from each species present in a sample. Bracken computes probabilities that describe how much sequence from each genome in the Kraken database is identical to other genomes in the database, and combine this information with the assignments for a particular sample to estimate abundance at the species level, the genus level, or above.
 Bracken is compatible with both Kraken 1 and Kraken 2 (just note that the default kmer length is different, 31 in Kraken, 35 in Kraken 2).</p>
+<p>Prior to abundance estimation with Bracken, each genome in the Kraken database must be divided into read-length kmers. In turn, these read-length kmers must be classified.</p>
 <div class="section" id="bracken-from-minikraken-2">
-<h3><span class="section-number">3.2.1. </span>Bracken from Minikraken 2<a class="headerlink" href="#bracken-from-minikraken-2" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.1. Bracken from Minikraken 2<a class="headerlink" href="#bracken-from-minikraken-2" title="Permalink to this headline">¶</a></h3>
+<p>As pre-built database, MiniKraken2 contains</p>
 </div>
 <div class="section" id="bracken-from-kraken-2-custom-database">
-<h3><span class="section-number">3.2.2. </span>Bracken from Kraken 2 custom database<a class="headerlink" href="#bracken-from-kraken-2-custom-database" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.2. Bracken from Kraken 2 custom database<a class="headerlink" href="#bracken-from-kraken-2-custom-database" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="mataphlan-3">
-<h2><span class="section-number">3.3. </span>Mataphlan 3<a class="headerlink" href="#mataphlan-3" title="Permalink to this headline">¶</a></h2>
+<h2>3.3. Mataphlan 3<a class="headerlink" href="#mataphlan-3" title="Permalink to this headline">¶</a></h2>
 <p>MetaPhlAn is a computational tool that relies on ~1.1M unique clade-specific <a class="reference external" href="https://www.dropbox.com/sh/7qze7m7g9fe2xjg/AAAlyQITZuUCtBUJxpxhIroIa/mpa_v30_CHOCOPhlAn_201901_marker_info.txt.bz2?dl=1">marker genes</a> identified from ~100,000 reference genomes (~99,500 bacterial and archaeal and ~500 eukaryotic) to conduct taxonomic profiling of microbial communities (Bacteria, Archaea and Eukaryotes) from metagenomic shotgun sequencing data. MetaPhlAn allows:</p>
 <blockquote>
 <div><ul class="simple">
@@ -452,19 +451,11 @@ To basic usage of MetaPhlAn for taxonomic profiling is:</p>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Amine Namouchi &amp; Claudio Ottoni
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -475,6 +466,7 @@ To basic usage of MetaPhlAn for taxonomic profiling is:</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
