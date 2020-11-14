@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,27 +11,29 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. DO-IT-YOURSELF" href="9_DIY.html" />
@@ -50,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Physalia Paleogenomics
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Physalia Paleogenomics
           
 
           
@@ -73,6 +74,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -100,6 +102,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -138,9 +141,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>6. Filtering, annotating and combining SNPs</li>
+      <li><span class="section-number">6. </span>Filtering, annotating and combining SNPs</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -160,7 +163,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="filtering-annotating-and-combining-snps">
-<h1>6. Filtering, annotating and combining SNPs<a class="headerlink" href="#filtering-annotating-and-combining-snps" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Filtering, annotating and combining SNPs<a class="headerlink" href="#filtering-annotating-and-combining-snps" title="Permalink to this headline">¶</a></h1>
 <p>To investigate the genetic variants in the <code class="docutils literal notranslate"><span class="pre">vcf</span></code> files we will use the program <a class="reference external" href="https://github.com/Amine-Namouchi/snpToolkit">snpToolkit</a>.
 The <code class="docutils literal notranslate"><span class="pre">-h</span></code> option will display the following message:</p>
 <blockquote>
@@ -186,7 +189,7 @@ optional arguments:
 </div>
 <p>Five options are possible: <code class="docutils literal notranslate"><span class="pre">explore</span></code>, <code class="docutils literal notranslate"><span class="pre">annotate</span></code>, <code class="docutils literal notranslate"><span class="pre">combine</span></code>, <code class="docutils literal notranslate"><span class="pre">viz</span></code>, <code class="docutils literal notranslate"><span class="pre">expand</span></code>.</p>
 <div class="section" id="snps-filtering-and-annotion">
-<h2>6.1. SNPs filtering and annotion<a class="headerlink" href="#snps-filtering-and-annotion" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>SNPs filtering and annotion<a class="headerlink" href="#snps-filtering-and-annotion" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">annotate</span></code> command will display general information about the usage of the program:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snptoolkit annotate -h
 usage: snptoolkit annotate <span class="o">[</span>-h<span class="o">]</span> -i IDENTIFIER -g GENBANK <span class="o">[</span>-p PROCESSORS<span class="o">]</span> <span class="o">[</span>-f EXCLUDECLOSESNPS<span class="o">]</span> <span class="o">[</span>-q QUALITY<span class="o">]</span> <span class="o">[</span>-d DEPTH<span class="o">]</span> <span class="o">[</span>-r RATIO<span class="o">]</span> <span class="o">[</span>-e EXCLUDE<span class="o">]</span>
@@ -318,7 +321,7 @@ The SNPs annotation is organized in tab delimited table. The columns of this tab
 </table>
 </div>
 <div class="section" id="compare-and-combine-multiple-annotation-files">
-<h2>6.2. Compare and combine multiple annotation files<a class="headerlink" href="#compare-and-combine-multiple-annotation-files" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Compare and combine multiple annotation files<a class="headerlink" href="#compare-and-combine-multiple-annotation-files" title="Permalink to this headline">¶</a></h2>
 <p>After generating a set of output files, you can run <code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">combine</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ snptoolkit combine  -h
 </pre></div>
@@ -455,7 +458,7 @@ ATCGGGTATGCCAATGCGT
 <p>The <code class="docutils literal notranslate"><span class="pre">fasta</span></code> output file will be used to generate a maximum likelihood tree using <code class="docutils literal notranslate"><span class="pre">IQ-TREE</span></code></p>
 </div>
 <div class="section" id="phylogenetic-tree-reconstruction">
-<h2>6.3. Phylogenetic tree reconstruction<a class="headerlink" href="#phylogenetic-tree-reconstruction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Phylogenetic tree reconstruction<a class="headerlink" href="#phylogenetic-tree-reconstruction" title="Permalink to this headline">¶</a></h2>
 <p>There are several tools to build phylogenetic trees. All of these tools, use an alignment file as input file. Now that we have generated an alignment file in <code class="docutils literal notranslate"><span class="pre">fasta</span></code> format, we will use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</span></code> to build a maximum likelihood tree.
 We use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</span></code> for several reasons:</p>
 <ul>
@@ -490,11 +493,19 @@ We use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</spa
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Amine Namouchi &amp; Claudio Ottoni
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -505,7 +516,6 @@ We use <code class="docutils literal notranslate"><span class="pre">IQ-TREE</spa
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

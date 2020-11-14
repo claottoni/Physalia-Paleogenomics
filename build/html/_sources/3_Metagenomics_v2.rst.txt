@@ -210,14 +210,40 @@ Kraken and Kraken 2 classify reads to the best matching location in the taxonomi
 To do that we will use Bracken (Bayesian Reestimation of Abundance with KrakEN), which estimates the number of reads originating from each species present in a sample. Bracken computes probabilities that describe how much sequence from each genome in the Kraken database is identical to other genomes in the database, and combine this information with the assignments for a particular sample to estimate abundance at the species level, the genus level, or above. 
 Bracken is compatible with both Kraken 1 and Kraken 2 (just note that the default kmer length is different, 31 in Kraken, 35 in Kraken 2).
 
-Prior to abundance estimation with Bracken, each genome in the Kraken database must be divided into read-length kmers. In turn, these read-length kmers must be classified.
+ 
 
 Bracken from Minikraken 2
 *************************
-As pre-built database, MiniKraken2 contains  
+Prior to abundance estimation with Bracken, each reference genome contained in the Kraken database is divided into "read-length kmers", and each of these read-length kmers are classified. To do that, we need the **library** and **taxonomy** of the kraken database that we used for classification. This will generate a kmer distribution file, for examples for read-length kmers of 100 nucleotides: ``database100mers.kmer_distrib``. 
+The kmer distribution file will be used for the following bracken analysis. 
+As pre-built database, Minikraken already contains three kmer distribution files built at 100, 150, 200 kmers. 
 
-Bracken from Kraken 2 custom database
-*************************************
+================ ========
+Option           Function
+================ ========
+**-i** <string>  Kraken report input file.
+**-o** <string>  Output file name.
+**-t** <string>  Classification level [Default = 'S', Options = 'D','P','C','O','F','G','S']: it specifies the taxonomic rank to analyze. Each classification at this specified rank will receive an estimated number of reads belonging to that rank after abundance estimation.
+**-l** <string>  Threshold: it specifies the minimum number of reads required for a classification at the specified rank. Any classifications with less than the specified threshold will not receive additional reads from higher taxonomy levels when distributing reads for abundance estimation.
+**-r** <string>  Read-length kmer used for the generations of Bracken distribution files (in Minikraken 100, 150, 200)
+================ ========
+
+
+To run bracken on our kraken outputs, we use variables to set up the options and the paths to the minikraken database and other folders. We will generate taxonomic abundances at the species level (the default option). 
+Remember to create first an output folder (with ``mkdir``). Also note that you can set as path variables either relative paths (based on your actual position and path) or absolute paths: 
+::
+
+  KRAKEN_DB=/path/to/kraken/db-folder
+  OUTPUT=/path/to/output-folder
+  READ_LEN=100
+  THRESHOLD=0
+  
+  for i in $(find -name "*krk.report" -type f)
+  do
+    FILENAME=$(basename "$i")
+    SAMPLE=${FILENAME%.krk.report}
+    bracken -d $KRAKEN_DB -i $i -o $OUTPUT/${SAMPLE}.bracken -r $READ_LEN -t $THRESHOLD
+  done
 
 
 ***********

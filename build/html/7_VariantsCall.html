@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,27 +11,29 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="6. Filtering, annotating and combining SNPs" href="8_Filtering_SNPs.html" />
@@ -50,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Physalia Paleogenomics
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Physalia Paleogenomics
           
 
           
@@ -73,6 +74,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -99,6 +101,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -137,9 +140,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>5. Variant calling and visualization</li>
+      <li><span class="section-number">5. </span>Variant calling and visualization</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,10 +162,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="variant-calling-and-visualization">
-<h1>5. Variant calling and visualization<a class="headerlink" href="#variant-calling-and-visualization" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Variant calling and visualization<a class="headerlink" href="#variant-calling-and-visualization" title="Permalink to this headline">¶</a></h1>
 <p>Once the reads are aligned and the data authenticated through <em>post-mortem</em> damage analysis, we can analyse the variant positions in the samples against the reference sequence.</p>
 <div class="section" id="variants-calling">
-<h2>5.1. Variants calling<a class="headerlink" href="#variants-calling" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Variants calling<a class="headerlink" href="#variants-calling" title="Permalink to this headline">¶</a></h2>
 <p>We will use two common tools for variants calling: Samtools, in particular <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">mpileup</span></code>, in combination with <code class="docutils literal notranslate"><span class="pre">bcftools</span> <span class="pre">call</span></code> of the program <a class="reference external" href="http://www.htslib.org/">BCFtools</a>.</p>
 <blockquote>
 <div></div></blockquote>
@@ -281,7 +284,7 @@
 <p>Now that you have your <code class="docutils literal notranslate"><span class="pre">vcf</span></code> file, you can open the file (use <code class="docutils literal notranslate"><span class="pre">nano</span></code> or <code class="docutils literal notranslate"><span class="pre">vim</span></code> in the server, or download the file in your laptop with <code class="docutils literal notranslate"><span class="pre">scp</span></code> and open it in a text editor) and try to search diagnostic variants (e.g. for classification). You can also visualize the variants in a specific program, as described below.</p>
 </div>
 <div class="section" id="variants-visualization">
-<h2>5.2. Variants visualization<a class="headerlink" href="#variants-visualization" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Variants visualization<a class="headerlink" href="#variants-visualization" title="Permalink to this headline">¶</a></h2>
 <p>To be able to visualize the variants in the <code class="docutils literal notranslate"><span class="pre">vcf</span></code> files, you can use the program <code class="docutils literal notranslate"><span class="pre">IGV</span></code>, which accepts multiple input files formats eg. <code class="docutils literal notranslate"><span class="pre">fasta</span></code>, <code class="docutils literal notranslate"><span class="pre">bam</span></code>, <code class="docutils literal notranslate"><span class="pre">vcf</span></code> and <code class="docutils literal notranslate"><span class="pre">gff</span></code>. After loading your <code class="docutils literal notranslate"><span class="pre">bam</span></code> file(s) and the corrsponding <code class="docutils literal notranslate"><span class="pre">vcf</span></code> file(s), you will see something likt that:</p>
 <img alt="_images/igv-bam_vcf.png" src="_images/igv-bam_vcf.png" />
 <p>In this figure, we observe in the <code class="docutils literal notranslate"><span class="pre">bam</span></code> alignment file a T-&gt;C transition in the corresponding position.</p>
@@ -308,11 +311,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Amine Namouchi &amp; Claudio Ottoni
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -323,7 +334,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

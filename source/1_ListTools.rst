@@ -8,7 +8,8 @@ Data preprocessing
 Metagenomics screening of shotgun data
   * kraken: https://ccb.jhu.edu/software/kraken/
   * kraken2: https://ccb.jhu.edu/software/kraken2/index.shtml
-  * krona: https://github.com/marbl/Krona/wiki   
+  * krona: https://github.com/marbl/Krona/wiki
+  * braken: https://ccb.jhu.edu/software/bracken/ 
 
 Reads alignment and variants calling
   * bwa: https://github.com/lh3/bwa
