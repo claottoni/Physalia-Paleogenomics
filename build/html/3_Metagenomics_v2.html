@@ -97,7 +97,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#bracken-from-custom-databases">3.2.2. Bracken from Custom databases</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#mataphlan-3">3.3. Mataphlan 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mataphlan-2">3.3. Mataphlan 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-tools">3.4. Other tools</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="4_ReadsMapping_v2.html">4. Alignment of reads to a reference genome</a></li>
@@ -457,15 +458,17 @@ done
 </div>
 <div class="section" id="bracken-from-custom-databases">
 <h3><span class="section-number">3.2.2. </span>Bracken from Custom databases<a class="headerlink" href="#bracken-from-custom-databases" title="Permalink to this headline">¶</a></h3>
-<p>The Minikraken database is available with all the files needed to run Bracken. If you used a custom database you must generate yourself the <code class="docutils literal notranslate"><span class="pre">kmer_distrib</span></code> file and the other Bracken database files with <code class="docutils literal notranslate"><span class="pre">bracken-build</span></code>. You can select the “read-length kmers” that is most suitable for your samples (namely the average insert size of your library, e.g. 60 bp for ancient libraries).
+<p>The Minikraken database is available with all the files needed to run Bracken. If you used a custom database you must generate yourself the <code class="docutils literal notranslate"><span class="pre">kmer_distrib</span></code> file and the other Bracken database files with <code class="docutils literal notranslate"><span class="pre">bracken-build</span></code>.
+To do that, we need the <strong>library</strong> and <strong>taxonomy</strong> of the kraken database that we used for classification. These are big size folders, but do not delete them if you plan to generate Braken databases in the future at different “read-length kmers”.
+You can select the “read-length kmers” that is most suitable for your samples (namely the average insert size of your library, e.g. 60 bp for ancient libraries).
 You can also generate several <code class="docutils literal notranslate"><span class="pre">kmer_distrib</span></code> files and make different runs (as in Minikraken run, where 100, 150 and 200 are available).
-You can find all the steps for generating the Bracken database files in the <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml?t=manual#step1b">Bracken manual</a>.</p>
+You can find all the steps for generating the Bracken database files in the <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml?t=manual#step0">Bracken manual</a>.</p>
 <blockquote>
 <div></div></blockquote>
 </div>
 </div>
-<div class="section" id="mataphlan-3">
-<h2><span class="section-number">3.3. </span>Mataphlan 3<a class="headerlink" href="#mataphlan-3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mataphlan-2">
+<h2><span class="section-number">3.3. </span>Mataphlan 2<a class="headerlink" href="#mataphlan-2" title="Permalink to this headline">¶</a></h2>
 <p>MetaPhlAn is a computational tool that relies on ~1.1M unique clade-specific <a class="reference external" href="https://www.dropbox.com/sh/7qze7m7g9fe2xjg/AAAlyQITZuUCtBUJxpxhIroIa/mpa_v30_CHOCOPhlAn_201901_marker_info.txt.bz2?dl=1">marker genes</a> identified from ~100,000 reference genomes (~99,500 bacterial and archaeal and ~500 eukaryotic) to conduct taxonomic profiling of microbial communities (Bacteria, Archaea and Eukaryotes) from metagenomic shotgun sequencing data. MetaPhlAn allows:</p>
 <blockquote>
 <div><ul class="simple">
@@ -477,25 +480,32 @@ You can find all the steps for generating the Bracken database files in the <a c
 <li><p>metagenomic strain-level population genomics</p></li>
 </ul>
 </div></blockquote>
-<p>The basic usage of MetaPhlAn for taxonomic profiling is:
-To basic usage of MetaPhlAn for taxonomic profiling is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metaphlan</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="p">(</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">--</span><span class="n">input_type</span> <span class="n">fastq</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">txt</span>
+<p>We are not going to cover to in detail MetaPhlAn, but this is a great tool given its specificity, in particular to confirm the detection of peculiar microbial species (e.g. pathogens).
+The basic usage of MetaPhlAn for taxonomic profiling is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metaphlan2</span><span class="o">.</span><span class="n">py</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="p">(</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">--</span><span class="n">input_type</span> <span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">outfile</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>MetaPhlAn relies on BowTie2 to map reads against marker genes. To save the intermediate BowTie2 output use <code class="docutils literal notranslate"><span class="pre">--bowtie2out</span></code>, and for multiple CPUs (if available) use <code class="docutils literal notranslate"><span class="pre">--nproc</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metaphlan</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="p">(</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">--</span><span class="n">bowtie2out</span> <span class="n">filename</span><span class="o">.</span><span class="n">bowtie2</span><span class="o">.</span><span class="n">bz2</span> <span class="o">--</span><span class="n">nproc</span> <span class="mi">5</span> <span class="o">--</span><span class="n">input_type</span> <span class="n">fastq</span> <span class="o">-</span><span class="n">o</span> <span class="n">output</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metaphlan2</span><span class="o">.</span><span class="n">py</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="p">(</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">--</span><span class="n">bowtie2out</span> <span class="n">filename</span><span class="o">.</span><span class="n">bowtie2</span><span class="o">.</span><span class="n">bz2</span> <span class="o">--</span><span class="n">nproc</span> <span class="mi">5</span> <span class="o">--</span><span class="n">input_type</span> <span class="n">fastq</span> <span class="o">-</span><span class="n">o</span> <span class="n">output</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>The intermediate BowTie2 output files can be used to run MetaPhlAn quickly by specifying the input (<code class="docutils literal notranslate"><span class="pre">--input_type</span> <span class="pre">bowtie2out</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metaphlan</span> <span class="n">filename</span><span class="o">.</span><span class="n">bowtie2</span><span class="o">.</span><span class="n">bz2</span> <span class="o">--</span><span class="n">nproc</span> <span class="mi">5</span> <span class="o">--</span><span class="n">input_type</span> <span class="n">bowtie2out</span> <span class="o">-</span><span class="n">o</span> <span class="n">output</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>For more information and advanced usage of MetaPhlAn see the <a class="reference external" href="https://github.com/biobakery/MetaPhlAn/wiki/MetaPhlAn-3.0">manual</a> and the <a class="reference external" href="https://github.com/biobakery/biobakery/wiki/metaphlan2">wiki</a> page (available for MetaPhlAn 2 at the moment).</p>
+<p>For more information and advanced usage of MetaPhlAn see the <a class="reference external" href="https://github.com/biobakery/MetaPhlAn">manual</a> and the <a class="reference external" href="https://github.com/biobakery/biobakery/wiki/metaphlan2">wiki</a> page. And, recently, <a class="reference external" href="https://github.com/biobakery/MetaPhlAn/wiki/MetaPhlAn-3.0">MetaPhlAn 3</a> has been released!</p>
 <blockquote>
 <div></div></blockquote>
 </div>
+</div>
+<div class="section" id="other-tools">
+<h2><span class="section-number">3.4. </span>Other tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h2>
+<p>We remind you that there are several metagenomic classifiers, all with their pros and cons, as discussed in the lecture.
+Other tools that we want to suggest are MALT (and the <a class="reference external" href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1903-0">HOPS</a> pipeline to analyse the data), and <a class="reference external" href="https://ccb.jhu.edu/software/centrifuge/manual.shtml">Centrifuge</a>, which both implement alignment-based methods to classify the reads.</p>
+<blockquote>
+<div></div></blockquote>
 </div>
 </div>
 

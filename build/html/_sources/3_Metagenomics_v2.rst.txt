@@ -266,17 +266,19 @@ The Bracken output file is tab-delimited. There are seven fields, from left to r
 Bracken from Custom databases
 *****************************
 
-The Minikraken database is available with all the files needed to run Bracken. If you used a custom database you must generate yourself the ``kmer_distrib`` file and the other Bracken database files with ``bracken-build``. You can select the "read-length kmers" that is most suitable for your samples (namely the average insert size of your library, e.g. 60 bp for ancient libraries). 
+The Minikraken database is available with all the files needed to run Bracken. If you used a custom database you must generate yourself the ``kmer_distrib`` file and the other Bracken database files with ``bracken-build``. 
+To do that, we need the **library** and **taxonomy** of the kraken database that we used for classification. These are big size folders, but do not delete them if you plan to generate Braken databases in the future at different "read-length kmers".
+You can select the "read-length kmers" that is most suitable for your samples (namely the average insert size of your library, e.g. 60 bp for ancient libraries). 
 You can also generate several ``kmer_distrib`` files and make different runs (as in Minikraken run, where 100, 150 and 200 are available). 
 You can find all the steps for generating the Bracken database files in the `Bracken manual`_. 
 
-  .. _Bracken manual: https://ccb.jhu.edu/software/bracken/index.shtml?t=manual#step1b
+  .. _Bracken manual: https://ccb.jhu.edu/software/bracken/index.shtml?t=manual#step0
 
 
 
 
 ***********
-Mataphlan 3
+Mataphlan 2
 ***********
 
 MetaPhlAn is a computational tool that relies on ~1.1M unique clade-specific `marker genes`_ identified from ~100,000 reference genomes (~99,500 bacterial and archaeal and ~500 eukaryotic) to conduct taxonomic profiling of microbial communities (Bacteria, Archaea and Eukaryotes) from metagenomic shotgun sequencing data. MetaPhlAn allows: 
@@ -290,25 +292,37 @@ MetaPhlAn is a computational tool that relies on ~1.1M unique clade-specific `ma
   - orders of magnitude speedups compared to existing methods.
   - metagenomic strain-level population genomics
 
+We are not going to cover to in detail MetaPhlAn, but this is a great tool given its specificity, in particular to confirm the detection of peculiar microbial species (e.g. pathogens). 
 The basic usage of MetaPhlAn for taxonomic profiling is:
-To basic usage of MetaPhlAn for taxonomic profiling is:
 ::
 
-  metaphlan filename.fastq(.gz) --input_type fastq -o outfile.txt
+  metaphlan2.py filename.fastq(.gz) --input_type fastq > outfile.txt
   
 
 .. note::
   MetaPhlAn relies on BowTie2 to map reads against marker genes. To save the intermediate BowTie2 output use ``--bowtie2out``, and for multiple CPUs (if available) use ``--nproc``:
   ::
   
-    metaphlan filename.fastq(.gz) --bowtie2out filename.bowtie2.bz2 --nproc 5 --input_type fastq -o output.txt
+    metaphlan2.py filename.fastq(.gz) --bowtie2out filename.bowtie2.bz2 --nproc 5 --input_type fastq -o output.txt
   
   The intermediate BowTie2 output files can be used to run MetaPhlAn quickly by specifying the input (``--input_type bowtie2out``):
   ::
   
     metaphlan filename.bowtie2.bz2 --nproc 5 --input_type bowtie2out -o output.txt
     
-  For more information and advanced usage of MetaPhlAn see the `manual`_ and the `wiki`_ page (available for MetaPhlAn 2 at the moment). 
+  For more information and advanced usage of MetaPhlAn see the `manual`_ and the `wiki`_ page. And, recently, `MetaPhlAn 3`_ has been released!
   
-    .. _manual: https://github.com/biobakery/MetaPhlAn/wiki/MetaPhlAn-3.0
+    .. _manual: https://github.com/biobakery/MetaPhlAn
+    .. _MetaPhlAn 3: https://github.com/biobakery/MetaPhlAn/wiki/MetaPhlAn-3.0    
     .. _wiki: https://github.com/biobakery/biobakery/wiki/metaphlan2
+    
+***********
+Other tools
+***********
+
+We remind you that there are several metagenomic classifiers, all with their pros and cons, as discussed in the lecture.
+Other tools that we want to suggest are MALT (and the `HOPS`_ pipeline to analyse the data), and `Centrifuge`_, which both implement alignment-based methods to classify the reads. 
+
+    .. _HOPS: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1903-0
+    .. _Centrifuge: https://ccb.jhu.edu/software/centrifuge/manual.shtml
+	
