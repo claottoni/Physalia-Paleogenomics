@@ -144,16 +144,21 @@ We assign colors to each label:
   coul=c("#E41A1C",		#Ancient calculus		
 		"#419681",		#Ancient tooth					
 		"#4DAF4A",		#Gut				
-		"#727E76",		#Plaque	
+		"lightgray",	#Plaque	
 		"#984EA3",		#Skin		
 		"#FF7F00",		#Soil		
-		"orange 4",		#Velsko-ancient		
+		"goldenrod",	#Velsko-ancient		
 		"#994C00")		#Velsko-modern
 
 And finally, we plot again the dendrogram, this time by customizing the tips assigning color-coded labels:
 ::
 
   plot(as.phylo(bray_dist.clust), type = "unrooted", cex = 0.5, lab4ut="axial", no.margin=T, show.tip.label=T, label.offset=0.02, edge.color = "gray", edge.width = 1, edge.lty = 1)
-  tiplabels(pch=19, col = coul[factor(group)], bg = coul[factor(group)], cex=1, lwd=1)          
+  tiplabels(pch=19, col = coul[factor(labels)], bg = coul[factor(labels)], cex=1, lwd=1)          
+
+And we can add a legend:
+::
+
+  legend("topleft", legend = sort(unique(labels)), bty = "n", col = coul, pch = 19, pt.cex=1, cex=0.6, pt.lwd=1)
 
 

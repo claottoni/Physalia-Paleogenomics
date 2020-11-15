@@ -214,6 +214,7 @@ Bracken is compatible with both Kraken 1 and Kraken 2 (just note that the defaul
 
 Bracken from Minikraken 2
 *************************
+
 Prior to abundance estimation with Bracken, each reference genome contained in the Kraken database is divided into "read-length kmers", and each of these read-length kmers are classified. To do that, we need the **library** and **taxonomy** of the kraken database that we used for classification. This will generate a kmer distribution file, for examples for read-length kmers of 100 nucleotides: ``database100mers.kmer_distrib``. 
 The kmer distribution file will be used for the following bracken analysis. 
 As pre-built database, Minikraken already contains three kmer distribution files built at 100, 150, 200 kmers. 
@@ -228,8 +229,13 @@ Option           Function
 **-r** <string>  Read-length kmer used for the generations of Bracken distribution files (in Minikraken 100, 150, 200)
 ================ ========
 
+To run Bracken on one sample we use the following command, with a threshold set at 10, and the read length set at 100 (so as to use the ``database100mers.kmer_distrib`` file inside the ``minikraken2_v1_8GB`` folder):
+::
 
-To run bracken on our kraken outputs, we use variables to set up the options and the paths to the minikraken database and other folders. We will generate taxonomic abundances at the species level (the default option). 
+  bracken -d path/to/minikraken2_v1_8GB -i sample.kraken.report -o sample.bracken -r 100 -t 10
+  
+
+To speed the process, we can also use variables to set up the options and the paths to the minikraken database and other folders, and a ``for`` loop. We will generate taxonomic abundances at the species level (the default option). 
 Remember to create first an output folder (with ``mkdir``). Also note that you can set as path variables either relative paths (based on your actual position and path) or absolute paths: 
 ::
 
@@ -244,6 +250,29 @@ Remember to create first an output folder (with ``mkdir``). Also note that you c
     SAMPLE=${FILENAME%.krk.report}
     bracken -d $KRAKEN_DB -i $i -o $OUTPUT/${SAMPLE}.bracken -r $READ_LEN -t $THRESHOLD
   done
+
+
+The Bracken output file is tab-delimited. There are seven fields, from left to right: 
+
+  1. Name
+  2. Taxonomy ID
+  3. Level ID (S=Species, G=Genus, O=Order, F=Family, P=Phylum, K=Kingdom)
+  4. Kraken Assigned Reads
+  5. Added Reads with Abundance Reestimation
+  6. Total Reads after Abundance Reestimation
+  7. Fraction of Total Reads
+
+
+Bracken from Custom databases
+*****************************
+
+The Minikraken database is available with all the files needed to run Bracken. If you used a custom database you must generate yourself the ``kmer_distrib`` file and the other Bracken database files with ``bracken-build``. You can select the "read-length kmers" that is most suitable for your samples (namely the average insert size of your library, e.g. 60 bp for ancient libraries). 
+You can also generate several ``kmer_distrib`` files and make different runs (as in Minikraken run, where 100, 150 and 200 are available). 
+You can find all the steps for generating the Bracken database files in the `Bracken manual`_. 
+
+  .. _Bracken manual: https://ccb.jhu.edu/software/bracken/index.shtml?t=manual#step1b
+
+
 
 
 ***********

@@ -94,6 +94,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#bracken">3.2. Bracken</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#bracken-from-minikraken-2">3.2.1. Bracken from Minikraken 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bracken-from-custom-databases">3.2.2. Bracken from Custom databases</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mataphlan-3">3.3. Mataphlan 3</a></li>
@@ -422,7 +423,11 @@ As pre-built database, Minikraken already contains three kmer distribution files
 </tr>
 </tbody>
 </table>
-<p>To run bracken on our kraken outputs, we use variables to set up the options and the paths to the minikraken database and other folders. We will generate taxonomic abundances at the species level (the default option).
+<p>To run Bracken on one sample we use the following command, with a threshold set at 10, and the read length set at 100 (so as to use the <code class="docutils literal notranslate"><span class="pre">database100mers.kmer_distrib</span></code> file inside the <code class="docutils literal notranslate"><span class="pre">minikraken2_v1_8GB</span></code> folder):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bracken</span> <span class="o">-</span><span class="n">d</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">minikraken2_v1_8GB</span> <span class="o">-</span><span class="n">i</span> <span class="n">sample</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span> <span class="o">-</span><span class="n">o</span> <span class="n">sample</span><span class="o">.</span><span class="n">bracken</span> <span class="o">-</span><span class="n">r</span> <span class="mi">100</span> <span class="o">-</span><span class="n">t</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>To speed the process, we can also use variables to set up the options and the paths to the minikraken database and other folders, and a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. We will generate taxonomic abundances at the species level (the default option).
 Remember to create first an output folder (with <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>). Also note that you can set as path variables either relative paths (based on your actual position and path) or absolute paths:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>KRAKEN_DB=/path/to/kraken/db-folder
 OUTPUT=/path/to/output-folder
@@ -437,6 +442,26 @@ do
 done
 </pre></div>
 </div>
+<p>The Bracken output file is tab-delimited. There are seven fields, from left to right:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Name</p></li>
+<li><p>Taxonomy ID</p></li>
+<li><p>Level ID (S=Species, G=Genus, O=Order, F=Family, P=Phylum, K=Kingdom)</p></li>
+<li><p>Kraken Assigned Reads</p></li>
+<li><p>Added Reads with Abundance Reestimation</p></li>
+<li><p>Total Reads after Abundance Reestimation</p></li>
+<li><p>Fraction of Total Reads</p></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="bracken-from-custom-databases">
+<h3><span class="section-number">3.2.2. </span>Bracken from Custom databases<a class="headerlink" href="#bracken-from-custom-databases" title="Permalink to this headline">¶</a></h3>
+<p>The Minikraken database is available with all the files needed to run Bracken. If you used a custom database you must generate yourself the <code class="docutils literal notranslate"><span class="pre">kmer_distrib</span></code> file and the other Bracken database files with <code class="docutils literal notranslate"><span class="pre">bracken-build</span></code>. You can select the “read-length kmers” that is most suitable for your samples (namely the average insert size of your library, e.g. 60 bp for ancient libraries).
+You can also generate several <code class="docutils literal notranslate"><span class="pre">kmer_distrib</span></code> files and make different runs (as in Minikraken run, where 100, 150 and 200 are available).
+You can find all the steps for generating the Bracken database files in the <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml?t=manual#step1b">Bracken manual</a>.</p>
+<blockquote>
+<div></div></blockquote>
 </div>
 </div>
 <div class="section" id="mataphlan-3">
