@@ -10,7 +10,7 @@ Metagenomics screening of shotgun data
   * kraken2: https://ccb.jhu.edu/software/kraken2/index.shtml
   * krona: https://github.com/marbl/Krona/wiki
   * braken: https://ccb.jhu.edu/software/bracken/
-  * metaphlan2: https://github.com/biobakery/MetaPhlAn 
+  * metaphlan3: https://github.com/biobakery/MetaPhlAn/wiki/MetaPhlAn-3.0
 
 Reads alignment and variants calling
   * bwa: https://github.com/lh3/bwa

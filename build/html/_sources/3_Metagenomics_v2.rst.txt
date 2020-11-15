@@ -278,7 +278,7 @@ You can find all the steps for generating the Bracken database files in the `Bra
 
 
 ***********
-Mataphlan 2
+Mataphlan 3
 ***********
 
 MetaPhlAn is a computational tool that relies on ~1.1M unique clade-specific `marker genes`_ identified from ~100,000 reference genomes (~99,500 bacterial and archaeal and ~500 eukaryotic) to conduct taxonomic profiling of microbial communities (Bacteria, Archaea and Eukaryotes) from metagenomic shotgun sequencing data. MetaPhlAn allows: 
@@ -293,10 +293,14 @@ MetaPhlAn is a computational tool that relies on ~1.1M unique clade-specific `ma
   - metagenomic strain-level population genomics
 
 We are not going to cover to in detail MetaPhlAn, but this is a great tool given its specificity, in particular to confirm the detection of peculiar microbial species (e.g. pathogens). 
+
+.. warning::
+    Please note that MetaPhlAn may have been installed in a separate environment that we called ``metaphlan``. In that case, if you are already working in a conda environment, get out of it with ``conda deactivate``, and activate the metaphlan environment ``conda activate metaphlan``. 
+  
 The basic usage of MetaPhlAn for taxonomic profiling is:
 ::
 
-  metaphlan2.py filename.fastq(.gz) --input_type fastq > outfile.txt
+  metaphlan filename.fastq(.gz) --input_type fastq -o outfile.txt
   
 
 .. note::

@@ -97,7 +97,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#bracken-from-custom-databases">3.2.2. Bracken from Custom databases</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#mataphlan-2">3.3. Mataphlan 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mataphlan-3">3.3. Mataphlan 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-tools">3.4. Other tools</a></li>
 </ul>
 </li>
@@ -105,8 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="7_VariantsCall.html">5. Variant calling and visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_Filtering_SNPs.html">6. Filtering, annotating and combining SNPs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_DIY.html">7. DO-IT-YOURSELF</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_R_session.html">8. R session</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_old_material.html">9. Material from previous courses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_old_material.html">8. Material from previous courses</a></li>
 </ul>
 
             
@@ -176,7 +175,7 @@
 <h1><span class="section-number">3. </span>Metagenomic screening of shotgun data<a class="headerlink" href="#metagenomic-screening-of-shotgun-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="kraken-2">
 <h2><span class="section-number">3.1. </span>Kraken 2<a class="headerlink" href="#kraken-2" title="Permalink to this headline">¶</a></h2>
-<p>In this hands-on session we will use Kraken 2 to screen the metagenomic content of an ancient sample. The first version of Kraken (see <a class="reference internal" href="11_old_material.html#kraken-label"><span class="std std-ref">Kraken</span></a>) uses a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml">Kraken 2</a> was developed.
+<p>In this hands-on session we will use Kraken 2 to screen the metagenomic content of an ancient sample. The first version of Kraken (see <a class="reference internal" href="10_old_material.html#kraken-label"><span class="std std-ref">Kraken</span></a>) uses a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml">Kraken 2</a> was developed.
 Kraken 2 is fast and requires less memory, BUT false positive errors occur in less than 1% of queries (confidence scoring thresholds can be used to call out to detect them).
 The first version of Kraken use a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason <a class="reference external" href="https://ccb.jhu.edu/software/kraken2/index.shtml">Kraken 2</a> was developed.
 Kraken 2 is fast and requires less memory, BUT the database false positive errors occur in less than 1% of queries (confidence scoring thresholds can be used to call out to detect them).
@@ -467,8 +466,8 @@ You can find all the steps for generating the Bracken database files in the <a c
 <div></div></blockquote>
 </div>
 </div>
-<div class="section" id="mataphlan-2">
-<h2><span class="section-number">3.3. </span>Mataphlan 2<a class="headerlink" href="#mataphlan-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mataphlan-3">
+<h2><span class="section-number">3.3. </span>Mataphlan 3<a class="headerlink" href="#mataphlan-3" title="Permalink to this headline">¶</a></h2>
 <p>MetaPhlAn is a computational tool that relies on ~1.1M unique clade-specific <a class="reference external" href="https://www.dropbox.com/sh/7qze7m7g9fe2xjg/AAAlyQITZuUCtBUJxpxhIroIa/mpa_v30_CHOCOPhlAn_201901_marker_info.txt.bz2?dl=1">marker genes</a> identified from ~100,000 reference genomes (~99,500 bacterial and archaeal and ~500 eukaryotic) to conduct taxonomic profiling of microbial communities (Bacteria, Archaea and Eukaryotes) from metagenomic shotgun sequencing data. MetaPhlAn allows:</p>
 <blockquote>
 <div><ul class="simple">
@@ -480,9 +479,13 @@ You can find all the steps for generating the Bracken database files in the <a c
 <li><p>metagenomic strain-level population genomics</p></li>
 </ul>
 </div></blockquote>
-<p>We are not going to cover to in detail MetaPhlAn, but this is a great tool given its specificity, in particular to confirm the detection of peculiar microbial species (e.g. pathogens).
-The basic usage of MetaPhlAn for taxonomic profiling is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metaphlan2</span><span class="o">.</span><span class="n">py</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="p">(</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">--</span><span class="n">input_type</span> <span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">outfile</span><span class="o">.</span><span class="n">txt</span>
+<p>We are not going to cover to in detail MetaPhlAn, but this is a great tool given its specificity, in particular to confirm the detection of peculiar microbial species (e.g. pathogens).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please note that MetaPhlAn may have been installed in a separate environment that we called <code class="docutils literal notranslate"><span class="pre">metaphlan</span></code>. In that case, if you are already working in a conda environment, get out of it with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>, and activate the metaphlan environment <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">metaphlan</span></code>.</p>
+</div>
+<p>The basic usage of MetaPhlAn for taxonomic profiling is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metaphlan</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="p">(</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">--</span><span class="n">input_type</span> <span class="n">fastq</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <div class="admonition note">
