@@ -133,22 +133,22 @@ Compare and combine multiple annotation files
 After generating a set of output files, you can run ``snpToolkit combine``:
 ::
 
-$ snptoolkit combine  -h
-usage: snptoolkit combine [-h] --location LOCATION [-r RATIO] [--bam BAMFILTER BAMFILTER BAMFILTER] [--snps {ns,s,all,inter}] [-e EXCLUDE]
-
-optional arguments:
-  -h, --help            show this help message and exit
-
-snpToolkit combine required options:
-  --location LOCATION   provide for example the name of the chromosome or plasmid you want to create fasta alignemnt for
-
-snpToolkit additional options:
-  -r RATIO              new versus reference allele ratio to filter SNPs from snpToolkit outputs. default [0]
-  --bam BAMFILTER BAMFILTER BAMFILTER
-                        provide the depth, ratio and the path to the folder containing the bam files. eg. 3 0.9 path
-  --snps {ns,s,all,inter}
-                        Specify if you want to concatenate all SNPs or just synonymous (s), non-synonymous (ns) or intergenic (inter) SNPs. default [all]
-  -e EXCLUDE            Provide a yaml file with keywords and coordinates to be excluded                          
+  $ snptoolkit combine  -h
+  usage: snptoolkit combine [-h] --location LOCATION [-r RATIO] [--bam BAMFILTER BAMFILTER BAMFILTER] [--snps {ns,s,all,inter}] [-e EXCLUDE]
+  
+  optional arguments:
+    -h, --help            show this help message and exit
+  
+  snpToolkit combine required options:
+    --location LOCATION   provide for example the name of the chromosome or plasmid you want to create fasta alignemnt for
+  
+  snpToolkit additional options:
+    -r RATIO              new versus reference allele ratio to filter SNPs from snpToolkit outputs. default [0]
+    --bam BAMFILTER BAMFILTER BAMFILTER
+                          provide the depth, ratio and the path to the folder containing the bam files. eg. 3 0.9 path
+    --snps {ns,s,all,inter}
+                          Specify if you want to concatenate all SNPs or just synonymous (s), non-synonymous (ns) or intergenic (inter) SNPs. default [all]
+    -e EXCLUDE            Provide a yaml file with keywords and coordinates to be excluded                          
 
 ``snpToolkit combine`` will compare all the SNPs identified in each file and create two additional output files: 
 

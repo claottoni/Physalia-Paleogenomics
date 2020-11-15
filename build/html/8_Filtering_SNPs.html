@@ -323,40 +323,23 @@ The SNPs annotation is organized in tab delimited table. The columns of this tab
 <h2><span class="section-number">6.2. </span>Compare and combine multiple annotation files<a class="headerlink" href="#compare-and-combine-multiple-annotation-files" title="Permalink to this headline">¶</a></h2>
 <p>After generating a set of output files, you can run <code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">combine</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ snptoolkit combine  -h
+usage: snptoolkit combine [-h] --location LOCATION [-r RATIO] [--bam BAMFILTER BAMFILTER BAMFILTER] [--snps {ns,s,all,inter}] [-e EXCLUDE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+snpToolkit combine required options:
+  --location LOCATION   provide for example the name of the chromosome or plasmid you want to create fasta alignemnt for
+
+snpToolkit additional options:
+  -r RATIO              new versus reference allele ratio to filter SNPs from snpToolkit outputs. default [0]
+  --bam BAMFILTER BAMFILTER BAMFILTER
+                        provide the depth, ratio and the path to the folder containing the bam files. eg. 3 0.9 path
+  --snps {ns,s,all,inter}
+                        Specify if you want to concatenate all SNPs or just synonymous (s), non-synonymous (ns) or intergenic (inter) SNPs. default [all]
+  -e EXCLUDE            Provide a yaml file with keywords and coordinates to be excluded
 </pre></div>
 </div>
-<p>usage: snptoolkit combine [-h] –location LOCATION [-r RATIO] [–bam BAMFILTER BAMFILTER BAMFILTER] [–snps {ns,s,all,inter}] [-e EXCLUDE]</p>
-<dl>
-<dt>optional arguments:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>show this help message and exit</p>
-</dd>
-</dl>
-</dd>
-<dt>snpToolkit combine required options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--location <var>LOCATION</var></span></kbd></dt>
-<dd><p>provide for example the name of the chromosome or plasmid you want to create fasta alignemnt for</p>
-</dd>
-</dl>
-</dd>
-<dt>snpToolkit additional options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">-r <var>RATIO</var></span></kbd></dt>
-<dd><p>new versus reference allele ratio to filter SNPs from snpToolkit outputs. default [0]</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–bam BAMFILTER BAMFILTER BAMFILTER</dt><dd><p>provide the depth, ratio and the path to the folder containing the bam files. eg. 3 0.9 path</p>
-</dd>
-<dt>–snps {ns,s,all,inter}</dt><dd><p>Specify if you want to concatenate all SNPs or just synonymous (s), non-synonymous (ns) or intergenic (inter) SNPs. default [all]</p>
-</dd>
-</dl>
-<dl class="option-list">
-<dt><kbd><span class="option">-e <var>EXCLUDE</var></span></kbd></dt>
-<dd><p>Provide a yaml file with keywords and coordinates to be excluded</p>
-</dd>
-</dl>
-</dd>
-</dl>
 <p><code class="docutils literal notranslate"><span class="pre">snpToolkit</span> <span class="pre">combine</span></code> will compare all the SNPs identified in each file and create two additional output files:</p>
 <blockquote>
 <div><ol class="arabic simple">
