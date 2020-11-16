@@ -9,8 +9,6 @@ Kraken 2
 
 In this hands-on session we will use Kraken 2 to screen the metagenomic content of an ancient sample. The first version of Kraken (see :ref:`kraken_label`) uses a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason `Kraken 2`_ was developed.
 Kraken 2 is fast and requires less memory, BUT false positive errors occur in less than 1% of queries (confidence scoring thresholds can be used to call out to detect them).
-The first version of Kraken use a large indexed and sorted list of k-mer/LCA pairs as its database, which may be problematic for users due to the large memory requirements. For this reason `Kraken 2`_ was developed.
-Kraken 2 is fast and requires less memory, BUT the database false positive errors occur in less than 1% of queries (confidence scoring thresholds can be used to call out to detect them).
 The default (or standard) database size is 29 GB (as of Jan. 2018, in Kraken 1 the standard database is about 200 GB!), and you will need slightly more than that in RAM if you want to build it.
 By default, Kraken 2 will attempt to use the dustmasker or  segmasker programs provided as part of NCBI's BLAST suite to mask low-complexity regions.
 
@@ -27,8 +25,8 @@ Other files may also be present as part of the database build process, and can, 
 
 Minikraken2
 ***********
-We will first use a pre-built 8 GB Kraken database, called `Minikraken2`_, constructed from complete dusted bacterial, archaeal, and viral genomes in RefSeq. You can download the pre-built `Minikraken2`_ database from the program's website with ``wget``, and extract the archive content with ``tar``: 
-You can download the pre-built `Minikraken2`_ database (containing bacteria, viral and archaea sequences) from the website with ``wget``, and extract the archive content with ``tar``: 
+We will first use a pre-built 8 GB Kraken database, called `Minikraken2`_, constructed from complete dusted bacterial, archaeal, and viral genomes in RefSeq. 
+You can download the pre-built `Minikraken2`_ database from the program's website with ``wget``, and extract the archive content with ``tar``: 
 
   .. _Minikraken2: https://ccb.jhu.edu/software/kraken2/index.shtml?t=downloads
 
@@ -215,7 +213,7 @@ Bracken is compatible with both Kraken 1 and Kraken 2 (just note that the defaul
 Bracken from Minikraken 2
 *************************
 
-Prior to abundance estimation with Bracken, each reference genome contained in the Kraken database is divided into "read-length kmers", and each of these read-length kmers are classified. To do that, we need the **library** and **taxonomy** of the kraken database that we used for classification. This will generate a kmer distribution file, for examples for read-length kmers of 100 nucleotides: ``database100mers.kmer_distrib``. 
+Prior to abundance estimation with Bracken, each reference genome contained in the Kraken database is divided into "read-length kmers", and each of these read-length kmers are classified. To do that, we need the **library** and **taxonomy** folders of the kraken database that we used for classification. This will generate a kmer distribution file, for examples for read-length kmers of 100 nucleotides: ``database100mers.kmer_distrib``. 
 The kmer distribution file will be used for the following bracken analysis. 
 As pre-built database, Minikraken already contains three kmer distribution files built at 100, 150, 200 kmers. 
 
@@ -224,8 +222,8 @@ Option           Function
 ================ ========
 **-i** <string>  Kraken report input file.
 **-o** <string>  Output file name.
-**-t** <string>  Classification level [Default = 'S', Options = 'D','P','C','O','F','G','S']: it specifies the taxonomic rank to analyze. Each classification at this specified rank will receive an estimated number of reads belonging to that rank after abundance estimation.
-**-l** <string>  Threshold: it specifies the minimum number of reads required for a classification at the specified rank. Any classifications with less than the specified threshold will not receive additional reads from higher taxonomy levels when distributing reads for abundance estimation.
+**-t** <string>  Threshold: it specifies the minimum number of reads required for a classification at the specified rank. Any classifications with less than the specified threshold will not receive additional reads from higher taxonomy levels when distributing reads for abundance estimation.
+**-l** <string>  Classification level [Default = 'S', Options = 'D','P','C','O','F','G','S']: it specifies the taxonomic rank to analyze. Each classification at this specified rank will receive an estimated number of reads belonging to that rank after abundance estimation.
 **-r** <string>  Read-length kmer used for the generations of Bracken distribution files (in Minikraken 100, 150, 200)
 ================ ========
 
@@ -242,7 +240,7 @@ Remember to create first an output folder (with ``mkdir``). Also note that you c
   KRAKEN_DB=/path/to/kraken/db-folder
   OUTPUT=/path/to/output-folder
   READ_LEN=100
-  THRESHOLD=0
+  THRESHOLD=10
   
   for i in $(find -name "*krk.report" -type f)
   do
@@ -267,7 +265,7 @@ Bracken from Custom databases
 *****************************
 
 The Minikraken database is available with all the files needed to run Bracken. If you used a custom database you must generate yourself the ``kmer_distrib`` file and the other Bracken database files with ``bracken-build``. 
-To do that, we need the **library** and **taxonomy** of the kraken database that we used for classification. These are big size folders, but do not delete them if you plan to generate Braken databases in the future at different "read-length kmers".
+To do that, we need the **library** and **taxonomy** folders of the kraken database that we used for classification. These are big size folders, but do not delete them if you plan to generate Braken databases in the future at different "read-length kmers".
 You can select the "read-length kmers" that is most suitable for your samples (namely the average insert size of your library, e.g. 60 bp for ancient libraries). 
 You can also generate several ``kmer_distrib`` files and make different runs (as in Minikraken run, where 100, 150 and 200 are available). 
 You can find all the steps for generating the Bracken database files in the `Bracken manual`_. 
@@ -307,7 +305,7 @@ The basic usage of MetaPhlAn for taxonomic profiling is:
   MetaPhlAn relies on BowTie2 to map reads against marker genes. To save the intermediate BowTie2 output use ``--bowtie2out``, and for multiple CPUs (if available) use ``--nproc``:
   ::
   
-    metaphlan2.py filename.fastq(.gz) --bowtie2out filename.bowtie2.bz2 --nproc 5 --input_type fastq -o output.txt
+    metaphlan filename.fastq(.gz) --bowtie2out filename.bowtie2.bz2 --nproc 5 --input_type fastq -o output.txt
   
   The intermediate BowTie2 output files can be used to run MetaPhlAn quickly by specifying the input (``--input_type bowtie2out``):
   ::
