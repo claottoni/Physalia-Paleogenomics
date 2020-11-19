@@ -67,9 +67,9 @@ BCFtools filter options              Function
 Instead of ``samtools mpileup`` and ``bcftools call`` (or in addition to) we can use ``gatk HaplotypeCaller``:
 ::
 
-  java -jar GenomeAnalysisTK.jar -T HaplotypeCaller -R reference.fasta -I filename.final.sort.rescaled.bam -o original.vcf.gz
-  java -jar GenomeAnalysisTK.jar -T VariantFiltration -R reference.fasta -V filename.vcf.gz -o filename.filtered.vcf.gz --filterName 'Cov3|Qual20' --filterExpression 'DP>2||QUAL>19'
-
+  java -jar ~/Share/tools/GenomeAnalysisTK.jar -T HaplotypeCaller -R reference.fasta -I filename.final.sort.rescaled.bam -o filename.vcf
+  java -jar ~/Share/tools/GenomeAnalysisTK.jar -T VariantFiltration -R reference.fasta -V filename.vcf.gz -o filename.filtered.vcf.gz --filterName 'Qual20|Cov5' --filterExpression 'QUAL<19||DP<5'
+  
 Now that you have your ``vcf`` file, you can open the file (use ``nano`` or ``vim`` in the server, or download the file in your laptop with ``scp`` and open it in a text editor) and try to search diagnostic variants (e.g. for classification). You can also visualize the variants in a specific program, as described below.
 
 

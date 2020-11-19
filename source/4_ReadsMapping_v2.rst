@@ -179,7 +179,7 @@ The presence of insertions or deletions (indels) in the genome may be responsibl
   Like Picard, in some server environment you can call GATK just by typing the program name. In other environments (also in this server) you have to call GATK by providing the full path to the java ``jar`` file. Here, the absolute path to the file is ``~/Share/Paleogenomics/programs/GenomeAnalysisTK.jar``:
   ::
 
-    java -jar ~/Share/Paleogenomics/programs/GenomeAnalysisTK.jar -T RealignerTargetCreator -h
+    java -jar ~/Share/tools/GenomeAnalysisTK.jar -T RealignerTargetCreator -h
 
 .. warning::
   
@@ -188,7 +188,7 @@ The presence of insertions or deletions (indels) in the genome may be responsibl
 Then, we realign the reads over the intervals listed in the ``target.intervals`` file with the option ``-targetIntervals`` of the tool ``IndelRealigner`` in GATK:
 ::
 
-  java -jar ~/Share/Paleogenomics/programs/GenomeAnalysisTK.jar	 -T IndelRealigner -R reference.fasta -I filename.RG.DR.bam -targetIntervals target.intervals -o filename.final.bam --filter_bases_not_stored
+  java -jar ~/Share/tools/GenomeAnalysisTK.jar	 -T IndelRealigner -R reference.fasta -I filename.RG.DR.bam -targetIntervals target.intervals -o filename.final.bam --filter_bases_not_stored
 
 .. note::
 
