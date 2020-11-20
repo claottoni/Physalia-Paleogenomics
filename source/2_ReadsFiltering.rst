@@ -48,8 +48,10 @@ At the end of the analysis, FastQC generates for each input file a summary repor
 Reads quality filtering
 ***********************
 
-Reads filtering is a crucial step as it will affect all downstream analyses. One of the important things to do is to trim the adapters that were used during the preparation of the genomic libraries. For this step we will use the program `AdapterRemoval`_, which performs adapter trimming of sequencing reads and subsequent merging (collapse) of paired-end reads with negative insert sizes (an overlap between two sequencing reads derived from a single DNA fragment) into a single collapsed read. Here we have single-end reads, so we are going to just trim the adapters:
-We will analyse the DNA sequences of an ancient sample sequenced in **single-end**.
+Reads filtering is a crucial step as it will affect all downstream analyses. One of the important things to do is to trim the adapters that were used during the preparation of the genomic libraries.
+For this step we will use the program `AdapterRemoval`_, which performs adapter trimming of sequencing reads and subsequent merging (collapse) of paired-end reads with negative insert sizes (an overlap between two sequencing reads derived from a single DNA fragment) into a single collapsed read.
+We will analyse the DNA sequences of an ancient sample sequenced in **single-end**. With this command, the trimmed reads are written to ``output_single.truncated.gz``, the discarded FASTQ reads are written to ``output_single.discarded.gz``, and settings and summary statistics are written to ``output_single.settings``.
+
 
   .. _AdapterRemoval: https://github.com/MikkelSchubert/adapterremoval
 
@@ -78,10 +80,12 @@ Option                              Function
 
 .. note::
   
-  - Here we are using a single-end library, for **paired-end** libraries the command to clip the adapter and merge the read pairs is: 
+  - Here we are using a single-end library, for **paired-end** libraries use the following command. The merged reads are in the file ``output.collapsed.gz``. The ``output.collapsed.truncated.gz`` contains merged reads that have been trimmed due to the **--trimns** or **--trimqualities** options. The files ``output.pair1.truncated.gz`` and ``output.pair2.truncated.gz`` contain trimmed pairs of reads which were not collapsed, ``output_paired.singleton.truncated`` contains reads where one mate was discarded.
+    Finally, the ``output_paired.discarded`` and ``output_paired.settings`` files correspond to those of the single-end run.
     ::
 
       AdapterRemoval --file1 filename_R1.fastq --file2 filename_R2.fastq --basename filename --minlength 30 --trimns --trimqualities --minquality 25 --collapse --gzip
+    
   
   - Several tools can be used for reads pre-processing and filtering, for example: `ClipAndMerge`_, `leeHom`_, `Atropos`_, `fastp`_.
     
