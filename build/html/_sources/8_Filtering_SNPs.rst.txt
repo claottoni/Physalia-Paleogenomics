@@ -158,7 +158,7 @@ After generating a set of output files, you can run ``snpToolkit combine``:
 To combine the snps from different samples in one alignment ``fasta`` file you type the following command:
 ::
 
-  snptoolkit combine --loc NC_003143.1 -r 0.9 --bam 2 1.0 ../bam/
+  snptoolkit combine --loc NC_003143.1 -r 0.9 --bam 2 1.0 ../bam
 
 As we will be working with ancient DNA, a small fraction of your genome could be covered. In this case we will use the option ``--bam`` to indicate the path to the folder containing the ``bam`` files. 
 The option ``-d`` must be used with the option ``--bam``. By default, all SNPs will be reported. This behaviour can be changed using the option ``--snp``.
