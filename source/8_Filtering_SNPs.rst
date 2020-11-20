@@ -61,8 +61,7 @@ The ``snpToolkit annotate`` command will display general information about the u
 Here is a simple example on how to use snpToolkit:
 ::
 
-  snpToolkit annotate -i VCF-filename.vcf.gz -g genbankFile.gbff -q 30 -d 5 -r 0.9
-
+  snptoolkit annotate -i vcf -g GCF_000009065.1_ASM906v1_genomic.gbff -d 3 -q 20 -r 0.9
 
 snpToolkit can automatically recogninze ``vcf`` files generated with the following programs: ``samtools mpileup``, ``gatk HaplotyCaller`` and ``freeBayes``. The ``vcf`` files could be gzipped or not. In the command line above, snpToolkit will filter and annotate all SNPs in the ``vcf`` file(s) that fullfil the following criteria: ``quality >= 30``, ``depth of coverage >= 5`` and ``ratio >= 0.9``.
 
@@ -155,6 +154,12 @@ After generating a set of output files, you can run ``snpToolkit combine``:
   1) a tabulated files with all polymorphic sites
   2) a ``fasta`` file. 
 
+
+To combine the snps from different samples in one alignment ``fasta`` file you type the following command:
+::
+
+  snptoolkit combine --loc NC_003143.1 -r 0.9 --bam 2 1.0 ../bam/
+
 As we will be working with ancient DNA, a small fraction of your genome could be covered. In this case we will use the option ``--bam`` to indicate the path to the folder containing the ``bam`` files. 
 The option ``-d`` must be used with the option ``--bam``. By default, all SNPs will be reported. This behaviour can be changed using the option ``--snp``.
 
@@ -205,6 +210,26 @@ We use ``IQ-TREE`` for several reasons:
 
 - Multithreading 
 
-    .. _ModelFinder: https://www.ncbi.nlm.nih.gov/pubmed/28481363
+To generate the phylogenetic tree type the following command using your ``fasta`` as input:
+::
 
-The phylogenetic tree generated can be visualized using ``Figtree``.
+  iqtree -m MFP+ASC -s SNPs_alignment.fasta
+
+==================== ============
+IQ-TREE options      Function
+==================== ============
+**-m**               `Substitution`_ model name to use during the analysis.
+**-s**               Alignment file 
+==================== ============
+
+
+
+More information of IQ-TREE can be found in the program's `tutorial`_
+
+    .. _ModelFinder: https://www.ncbi.nlm.nih.gov/pubmed/28481363
+    .. _tutorial: http://www.iqtree.org/doc/Tutorial
+    .. _Substitution: http://www.iqtree.org/doc/Substitution-Models
+
+The phylogenetic tree generated can be visualized using ``Figtree``, `download`_ it in your local machine and load the ``treefile`` output from IQ-TREE to visualize the tree.
+
+    .. _download: http://tree.bio.ed.ac.uk/software/figtree
